@@ -1,24 +1,51 @@
-#include "vector.hpp"
 
+#include "vector.hpp"
 
 int main()
 {
-	ft::vector <int> f(10, 5);
-	// std::vector <int> g(2, 10);
-	std::cout << "size and capacity > > " << f.size() << " " << f.capacity() << std::endl;
-	f.print();
-
+	ft::vector <int> vf(10, 5);
+	ft::vector<int>::iterator it = vf.begin();
+	std::cout << *it << std::endl;
+	// std::vector <int> f;
+	// f.push_back(1);
+    // f.push_back(2);
+	// f.push_back(3);
+	// f.push_back(4);
+    // f.push_back(5);
+	// f.push_back(6);
+	// f.push_back(7);
+    // f.push_back(8);
+	// f.assign(f.begin(), f.end());
+	// // ft::vector <int> fq(10, 5);
+	
+	// // std::vector <int> g(2, 10);
+	// std::cout << "size and capacity > > " << f.size() << " " << f.capacity() << std::endl;
 	// for (int i = 0; i < f.size(); i++)
 	// 	std::cout << " > > " << f[i] << std::endl;
-	std::cout << std::endl;
+	// std::cout << std::endl;
 
-	f.assign(5, 6);
-	std::cout << "size and capacity > > " << f.size() << " " << f.capacity() << std::endl;
+	// f.resize(11, 9);
+	// // f.push_back(122);
+	// std::cout << "size and capacity > > " << f.size() << " " << f.capacity() << std::endl;
+	// // f.print();
 	// for (int i = 0; i < f.size(); i++)
 	// 	std::cout << " > > " << f[i] << std::endl;
-	f.print();
+	// std::cout << std::endl;
+	
+	// // f.assign(5, 6);
+	// std::cout << "MINE size and capacity > > " << fq.size() << " " << f.capacity() << std::endl;
 
-	// f.print();
+	// fq.print();
+	// std::cout << std::endl;
+	// fq.resize(11, 9);
+	// // fq.push_back(122);
+	// std::cout << "MINE size and capacity > > " << fq.size() << " " << f.capacity() << std::endl;
+
+	// std::cout << "size and capacity > > " << f.size() << " " << f.capacity() << std::endl;
+	// // for (int i = 0; i < f.size(); i++)
+	// // 	std::cout << " > > " << f[i] << std::endl;
+
+	// fq.print();
 	// g.print();
 	// std::cout << " ___________________ " << std::endl;
 	// f.swap(g);

@@ -1,8 +1,12 @@
 
-#ifndef FT_VECTOR_HPP_
-# define FT_VECTOR_HPP_
+#ifndef VECTOR_HPP_
+# define VECTOR_HPP_
+
+
+#include <iterator>
 #include <vector>
 #include <iostream>
+#include "iterator.hpp"
 
 namespace ft
 {
@@ -14,14 +18,15 @@ namespace ft
 		typedef Allocator                                allocator_type;
 		typedef typename allocator_type::reference       reference;
 		typedef typename allocator_type::const_reference const_reference;
-		// typedef implementation-defined                   iterator;
 		// typedef implementation-defined                   const_iterator;
 		typedef typename allocator_type::size_type       size_type;
 		typedef typename allocator_type::difference_type difference_type;
 		typedef typename allocator_type::pointer         pointer;
 		typedef typename allocator_type::const_pointer   const_pointer;
+		typedef kiterator<pointer>							iterator;
 		// typedef std::reverse_iterator<iterator>          reverse_iterator;
 		// typedef std::reverse_iterator<const_iterator>    const_reverse_iterator;
+
 		vector(): _size(0), _capacity(0),ptr(nullptr) {}
 		vector(const vector& other) 
 		{
@@ -83,14 +88,27 @@ namespace ft
 			}
 		}
 
+		iterator begin() {return iterator(ptr);}
+
+
+
 		void resize (size_type n, value_type val = value_type())
 		{
-			if (n > max_size())
-				throw std::length_error("Error resize");
 			if (n > _size)
 			{
-				
+				for (size_type i = 0; i < (_size - n); i++)
+					push_back(val);
+				_size = n;
+				return ;
 			}
+			if (n < _size)
+			{
+				for (size_type i = n; i < _size; i++)
+					allc.destroy(ptr + i);
+				_size = n;
+				return ;
+			}
+
 		}
 		void assign (size_type n, const value_type& val)
 		{
@@ -101,17 +119,17 @@ namespace ft
 			{
 				reserve(n);
 				for (size_type i = 0; i < n; i++){
-					allc.construct((ptr + i), val);
+					ptr = allc.construct((ptr + i), val);
 				}
 				_size = n;
 				_capacity = n;
 				return ;
 			}
 			for (size_type i = 0; i < n; i++)
-				allc.construct((ptr + i), val);
+				ptr = allc.construct((ptr + i), val);
 			_size = n;
 		}
-
+		allocator_type get_allocator() const { return allc;}
 		void swap(vector &v)
 		{
 			vector tmp = v;
@@ -162,7 +180,6 @@ namespace ft
 		size_type	_size;
 		size_type    _capacity;
 		allocator_type	allc;
-
 	};
 }
 #endif

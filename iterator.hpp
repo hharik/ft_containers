@@ -47,15 +47,19 @@ namespace ft
 			~iterator() {}
 			reference operator*() const{return *ptr_iter;}
 			iterator operator- (difference_type n) const{return (ptr_iter - n);}
-			iterator& operator++() { return ++(*this);}
-			iterator  operator++(int) { iterator tmp = *this; ++(*this); return tmp;}
-			iterator& operator--(){return (--(*this));}
+			iterator& operator++() { ++(ptr_iter); return *this; }
+			iterator  operator++(int) { iterator tmp = *this; ++(ptr_iter); return tmp;}
+			iterator& operator--(){--(ptr_iter); return *this;}
 			iterator& operator-= (difference_type n) {return (ptr_iter -= n);}
 			iterator& operator+= (difference_type n) {return (ptr_iter += n);}
-			iterator  operator--(int) { iterator tmp = *this; --(*this); return tmp;}
-			reference operator[] (difference_type n) const {return *(ptr_iter - n);}
+			iterator  operator--(int) { iterator tmp = *this; --(ptr_iter); return tmp;}
+			reference operator[] (difference_type n) const {return *(ptr_iter + n);}
 			iterator operator+ (difference_type n) const {return (ptr_iter + n);}
+			pointer operator->() const { return &(operator*());
+
 			//relational operators
+			friend iterator operator+ (difference_type n, const iterator<T>& rev_it) { return (rev_it + n);};
+			friend difference_type operator-(const iterator<T>& lhs, const iterator<T>& rhs) { return (lhs.ptr_iter - rhs.ptr_iter);}
 			friend bool operator== (const iterator<T>& lhs, const iterator<T>& rhs){return (lhs.ptr_iter == rhs.ptr_iter);}
 			friend bool operator!= (const iterator<T>& lhs, const iterator<T>& rhs){return !(lhs.ptr_iter == rhs.ptr_iter);}
 			friend bool operator<  (const iterator<T>& lhs, const iterator<T>& rhs) { return lhs.ptr_iter < rhs.ptr_iter;}

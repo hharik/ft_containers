@@ -92,23 +92,26 @@ namespace ft
 		iterator end() { return iterator((ptr  + _size));}
 		iterator insert (iterator position, const value_type& val)
 		{
-			int i = 0;
-			iterator tmp;
-			while(i < _size)
+			size_type index = position  - begin();
+			if (_size + 1 > _capacity)
 			{
-				tmp = (begin() + i);
-				if (tmp == position)
-					std::cout << "got that " << std::endl;
-				std::cout << *tmp << std::endl;
-				i++;
+				reserve(2 * _capacity + 1);
 
 			}
-			// if (_size + 1 > _capacity)
-			// {
-				// reserve(2 * _capacity + 1);
-				// if (position == end())
-					// std::cout <<  << std::endl;
-			// }
+			else
+			{
+				allc.construct(ptr + _size, val);
+				_size++;
+				iterator new_val = end() - 1;
+				iterator prev_val = end() - 2;
+				while (new_val != position)
+				{
+					*(new_val) = *(prev_val);
+					new_val--;
+					prev_val--;
+				}
+				*new_val = val;
+			}
 			return (iterator(ptr));
 		}
 

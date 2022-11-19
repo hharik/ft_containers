@@ -23,7 +23,7 @@ namespace ft
 		typedef typename allocator_type::difference_type difference_type;
 		typedef typename allocator_type::pointer         pointer;
 		typedef typename allocator_type::const_pointer   const_pointer;
-		typedef kiterator<pointer>							iterator;
+		typedef iterator<pointer>							iterator;
 		// typedef std::reverse_iterator<iterator>          reverse_iterator;
 		// typedef std::reverse_iterator<const_iterator>    const_reverse_iterator;
 
@@ -87,9 +87,30 @@ namespace ft
 				_capacity = n;
 			}
 		}
-
+		//iterator begin() && end()
 		iterator begin() {return iterator(ptr);}
+		iterator end() { return iterator((ptr  + _size));}
+		iterator insert (iterator position, const value_type& val)
+		{
+			int i = 0;
+			iterator tmp;
+			while(i < _size)
+			{
+				tmp = (begin() + i);
+				if (tmp == position)
+					std::cout << "got that " << std::endl;
+				std::cout << *tmp << std::endl;
+				i++;
 
+			}
+			// if (_size + 1 > _capacity)
+			// {
+				// reserve(2 * _capacity + 1);
+				// if (position == end())
+					// std::cout <<  << std::endl;
+			// }
+			return (iterator(ptr));
+		}
 
 
 		void resize (size_type n, value_type val = value_type())

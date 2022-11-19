@@ -3,10 +3,8 @@
 
 int main()
 {
-	ft::vector <int> vf(10, 5);
-	ft::vector<int>::iterator it = vf.begin();
-	std::cout << *it << std::endl;
-	// std::vector <int> f;
+	// std::vector <int> f(10, 5);
+	// // std::vector <int> f;
 	// f.push_back(1);
     // f.push_back(2);
 	// f.push_back(3);
@@ -15,19 +13,29 @@ int main()
 	// f.push_back(6);
 	// f.push_back(7);
     // f.push_back(8);
+	// ft::vector<int>::iterator it = f.begin();
+	// std::cout << *it << std::endl;
+	// ft::vector<int>::iterator end = f.end();
+	// std::cout <<  *(end - 1)<< std::endl;
 	// f.assign(f.begin(), f.end());
 	// // ft::vector <int> fq(10, 5);
 	
-	// // std::vector <int> g(2, 10);
-	// std::cout << "size and capacity > > " << f.size() << " " << f.capacity() << std::endl;
-	// for (int i = 0; i < f.size(); i++)
-	// 	std::cout << " > > " << f[i] << std::endl;
+	ft::vector <int> f(5, 10);
+	std::cout << "size and capacity > > " << f.size() << " " << f.capacity() << std::endl;
+	// f.print();
+	f.insert(f.begin() + 3, 20);
+	// // for (int i = 0; i < f.size(); i++)
+	// // 	std::cout << " > > " << f[i] << std::endl;
 	// std::cout << std::endl;
-
+	// // ft::vector<int>::iterator it = f.begin();
+	// ft::vector<int>::iterator iter = f.insert(f.begin(), 9);
+	// std::cout << "size and capacity > > " << f.size() << " " << f.capacity() << std::endl;
+	// f.print();
+	// for (int i = 0; i < f.size(); i++)
 	// f.resize(11, 9);
+	// 	std::cout << " > > " << f[i] << std::endl;
 	// // f.push_back(122);
 	// std::cout << "size and capacity > > " << f.size() << " " << f.capacity() << std::endl;
-	// // f.print();
 	// for (int i = 0; i < f.size(); i++)
 	// 	std::cout << " > > " << f[i] << std::endl;
 	// std::cout << std::endl;

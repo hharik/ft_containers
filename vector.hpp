@@ -70,7 +70,7 @@ namespace ft
 		{
 			if (n > max_size())
 				throw std::length_error("Error reserve");
-			if (n >_capacity)
+			if (n > _capacity)
 			{
 				pointer tmp = allc.allocate(n);
 				if (_size > 0){
@@ -85,13 +85,39 @@ namespace ft
 			}
 		}
 		//iterator begin() && end()
+		reference front(){return *(ptr);}
 		iterator begin() {return iterator(ptr);}
 		iterator end() { return iterator((ptr  + _size));}
+
+//still working on it  // template <class InputIterator> void insert (iterator position, InputIterator first, InputIterator last)
+		// {
+		// 	while (first != last)
+		// 	{
+		// 		insert(position, *first);
+		// 		// std::cout << *first << std::endl;
+		// 		first++;
+		// 		position++;
+		// 	}
+		// }
+		void insert (iterator position, size_type n, const value_type& val)
+		{
+			int i = 0;
+			while (i < n)
+			{
+				insert(position + i, val);
+				i++;
+			}
+		}
 		iterator insert (iterator position, const value_type& val)
 		{
 			size_type index = position  - begin();
 			if (_size + 1 > _capacity)
-				reserve(2 * _capacity + 1);
+			{
+				if (_capacity == 0)
+					reserve(2 * _capacity + 1);
+				else if (_capacity > 0)
+					reserve(2 * _capacity);
+			}
 			allc.construct(ptr + _size, val);
 			_size++;
 			int i = _size - 1;
@@ -109,7 +135,41 @@ namespace ft
 			*new_val = val;
 			return (iterator(ptr));
 		}
-
+		iterator erase (iterator position)
+		{
+			size_type index = position  - begin();
+			// std::cout << index << std::endl;
+			pointer tmp = allc.allocate(_capacity);
+			int i = 0;
+			int j =  0;
+			while (i < _size)
+			{
+				if (i != index)
+				{
+					allc.construct(tmp + j, *(ptr + i));
+					j++;
+				}
+				i++;
+			}
+			i = 0;
+			while (i < _size)
+			{
+				allc.destroy(ptr + i);
+				i++;
+			}
+			_size--;
+			ptr = tmp;
+			return (iterator(ptr));
+		}
+		iterator erase (iterator first, iterator last)
+		{
+			while (first != last)
+			{
+				erase(first);
+				first++;
+			}
+			return (iterator(ptr));
+		}
 		void resize (size_type n, value_type val = value_type())
 		{
 			if (n > _size)
@@ -205,7 +265,12 @@ namespace ft
 		void push_back(const value_type& val)
 		{
 			if (_size  == _capacity)
-				reserve(2 * _capacity + 1);
+			{
+				if (_capacity == 0)
+					reserve(2 * _capacity + 1);
+				else if (_capacity > 0)
+					reserve(2 * _capacity);
+			}
 			allc.construct((ptr + _size++), val);
 		}
 		~vector()
@@ -216,7 +281,6 @@ namespace ft
 					allc.destroy(ptr + i);
 				allc.deallocate(ptr, _capacity);
 			}
-			std::cout << "destructored" << std::endl;
 		}
 		void clear()
 		{
@@ -236,6 +300,14 @@ namespace ft
 		size_type capacity() const { return _capacity; }
 		size_type	size() const { return _size;}
 		size_type	max_size() const { return allc.max_size();}
+
+		//Relational operators non mumber functions (aka friend func's)
+		friend bool operator== (const vector<T>& lhs, const vector<T>& rhs) { return (lhs.ptr == rhs.ptr);}
+		friend bool operator!= (const vector<T>& lhs, const vector<T>& rhs) {return !(lhs.ptr == rhs.ptr);}
+		friend bool operator<  (const vector<T>& lhs, const vector<T>& rhs) {return (lhs.ptr < rhs.ptr);}
+		friend bool operator<=  (const vector<T>& lhs,const vector<T>& rhs) { return !(lhs.ptr < rhs.ptr);}
+		friend bool operator>  (const vector<T>& lhs, const vector<T>& rhs) { return (lhs.ptr > rhs.ptr);}
+		friend bool operator>= (const vector<T>& lhs, const vector<T>& rhs) { return !(lhs.ptr > rhs.ptr);}
 		private:
 		pointer	ptr;
 		size_type	_size;

@@ -1,8 +1,19 @@
-
 #include "vector.hpp"
 
 int main()
 {
+
+		//testing relational operators
+		// std::vector<int> foo (3,100);   // three ints with a value of 100
+		// std::vector<int> bar (2,200);   // two ints with a value of 200
+
+		// if (foo==bar) std::cout << "foo and bar are equal\n";
+		// if (foo!=bar) std::cout << "foo and bar are not equal\n";
+		// if (foo< bar) std::cout << "foo is less than bar\n";
+		// if (foo> bar) std::cout << "foo is greater than bar\n";
+		// if (foo<=bar) std::cout << "foo is less than or equal to bar\n";
+		// if (foo>=bar) std::cout << "foo is greater than or equal to bar\n";
+
 	// std::vector <int> f(10, 5);
 	// // std::vector <int> f;
 
@@ -12,20 +23,43 @@ int main()
 	// std::cout <<  *(end - 1)<< std::endl;
 	// f.assign(f.begin(), f.end());
 	// // ft::vector <int> fq(10, 5);
-	std::vector <int> f1;
-	std::vector <int> f2;
-	f1.push_back(30);
-	f1.push_back(40);
-	f1.push_back(50);
-	f1.push_back(60);
-	f1.push_back(70);
-	f1.push_back(80);
-	std::cout << (f1.at(-1)) << std::endl;
+	// std::vector <int> f1;
+	// ft::vector <int> f1(3, 100);
 	// std::cout << "size and capacity > > " << f1.size() << " " << f1.capacity() << std::endl;
+	// f1.insert(f1.begin(), 200);
+	// f1.insert(f1.begin(), 2,300);
+	// // f1.push_back(30);
+	// // f1.push_back(40);
+	// // f1.push_back(50);
+	// // f1.push_back(60);
+	// // f1.push_back(70);
+	// // f1.push_back(80);
+
+	// // f2.push_back(30);
+	// // f2.push_back(40);
+	// // f2.push_back(50);
+	// // f2.push_back(60);
+	// // f2.push_back(70);
+	// // f2.push_back(80);
 	// // for (int i = 0; i < f1.size(); i++)
-	// // f1.print();
+	// // 	std::cout << " before VECTOR " << f1[i] << std::endl;
+	// int myarray [] = { 501,502,503 };
+	// // std::cout << std::endl;
+	// // f1.insert(f1.begin(), myarray, myarray + 2);
+	
+	// std::cout << "size and capacity > > " << f1.size() << " " << f1.capacity() << std::endl;
 	// for (int i = 0; i < f1.size(); i++)
-	// 	std::cout << " > > " << f1[i] << std::endl;
+	// 	std::cout << " AFTER VECTOR " << f1[i] << std::endl;
+	
+	// std::cout << "MY RESE" << std::endl;
+	// std::cout << "size and capacity > > " << f2.size() << " " << f2.capacity() << std::endl;
+	// f2.print();
+	// f2.erase(f2.begin());
+
+	// std::cout << "size and capacity > > " << f2.size() << " " << f2.capacity() << std::endl;
+	// f2.print();
+
+	// // for (int i = 0; i < f1.size(); i++)
 	// std::cout << std::endl;
 	// std::vector<int>::iterator it = f1.begin() + 1;
 	// f2.assign(it, f1.end() - 1);

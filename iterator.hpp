@@ -1,6 +1,7 @@
 
 #ifndef ITERATOR_HPP
 #define ITERATOR_HPP
+
 namespace ft
 {
 	template<class T>
@@ -28,8 +29,8 @@ namespace ft
 	{
 		typedef ptrdiff_t difference_type;
 		typedef T value_type;
-		typedef T* pointer;
-		typedef T& reference;
+		typedef const T* pointer;
+		typedef const T& reference;
 		typedef std::random_access_iterator_tag iterator_category;
 	};
 	template<class T>
@@ -55,7 +56,7 @@ namespace ft
 			iterator  operator--(int) { iterator tmp = *this; --(ptr_iter); return tmp;}
 			reference operator[] (difference_type n) const {return *(ptr_iter + n);}
 			iterator operator+ (difference_type n) const {return (ptr_iter + n);}
-			pointer operator->() const { return &(operator*());
+			pointer operator->() const { return &(operator*());}
 
 			//relational operators
 			friend iterator operator+ (difference_type n, const iterator<T>& rev_it) { return (rev_it + n);};

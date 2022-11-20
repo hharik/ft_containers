@@ -26,7 +26,6 @@ namespace ft
 		typedef iterator<pointer>							iterator;
 		// typedef std::reverse_iterator<iterator>          reverse_iterator;
 		// typedef std::reverse_iterator<const_iterator>    const_reverse_iterator;
-
 		vector(): _size(0), _capacity(0),ptr(nullptr) {}
 		vector(const vector& other) 
 		{
@@ -58,10 +57,8 @@ namespace ft
 			_size = v._size;
 			_capacity = v._capacity;
 			ptr = allc.allocate(_capacity);
-			if (_size > 0){
-				for (size_type i = 0; i < _size; i++)
-					allc.construct(ptr + i, *(v.ptr + i));
-			}
+			for (size_type i = 0; i < _size; i++)
+				allc.construct(ptr + i, *(v.ptr + i));
 			return *this;
 		}
 		void print()
@@ -94,27 +91,24 @@ namespace ft
 		{
 			size_type index = position  - begin();
 			if (_size + 1 > _capacity)
-			{
 				reserve(2 * _capacity + 1);
-
-			}
-			else
+			allc.construct(ptr + _size, val);
+			_size++;
+			int i = _size - 1;
+			iterator new_val = end() - 1;
+			iterator prev_val = end() - 2;
+			while (new_val != position)
 			{
-				allc.construct(ptr + _size, val);
-				_size++;
-				iterator new_val = end() - 1;
-				iterator prev_val = end() - 2;
-				while (new_val != position)
-				{
-					*(new_val) = *(prev_val);
-					new_val--;
-					prev_val--;
-				}
-				*new_val = val;
+				if (i == index)
+					break ;
+				*(new_val) = *(prev_val);
+				new_val--;
+				prev_val--;
+				i--;
 			}
+			*new_val = val;
 			return (iterator(ptr));
 		}
-
 
 		void resize (size_type n, value_type val = value_type())
 		{
@@ -134,6 +128,43 @@ namespace ft
 			}
 
 		}
+		void assign(iterator first, iterator last)
+		{
+			
+			clear();
+			size_type n = last - first;
+			if (n > max_size())
+				throw std::length_error("Error max size");
+			std::cout << "  ++++++++ ++ + ++ + + . "  <<  n << std::endl;
+			if (n > _capacity)
+			{
+				reserve (n);
+				_size = n;
+				_capacity = n;
+				size_type i = 0;
+				while (first != last)
+				{
+					allc.construct((ptr + i), *first);
+					i++;
+					first++;
+				}
+				return ;
+			}
+			else{
+				
+				size_type i = 0;
+				while (first != last)
+				{
+					// std::cout << "urmom !! " << i << std::endl;
+					allc.construct((ptr + i), *first);
+					i++;
+					first++;
+				}
+				// print();
+				_size = n;
+			}
+
+		}
 		void assign (size_type n, const value_type& val)
 		{
 			clear();
@@ -143,17 +174,23 @@ namespace ft
 			{
 				reserve(n);
 				for (size_type i = 0; i < n; i++){
-					ptr = allc.construct((ptr + i), val);
+					allc.construct((ptr + i), val); // i did assign int to ptr but shit went crazy check later
 				}
 				_size = n;
 				_capacity = n;
 				return ;
 			}
 			for (size_type i = 0; i < n; i++)
-				ptr = allc.construct((ptr + i), val);
+				allc.construct((ptr + i), val); // i did assign int to ptr but shit went crazy check later
 			_size = n;
 		}
 		allocator_type get_allocator() const { return allc;}
+		reference operator[] (size_type n) { return *(ptr + n);}
+		reference at (size_type n){
+			if (n >= _size)
+				throw std::out_of_range("Out of Range error");
+			return (ptr[n]);
+		}
 		void swap(vector &v)
 		{
 			vector tmp = v;

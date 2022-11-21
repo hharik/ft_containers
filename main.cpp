@@ -3,6 +3,21 @@
 int main()
 {
 
+	ft::vector<int> vec;
+	vec.push_back(96);
+	vec.push_back(92);
+	vec.push_back(91);
+	vec.push_back(93);
+	ft::vector<int>::reverse_iterator rv = vec.rbegin();
+	std::cout<<*(rv - 1)<<std::endl;
+	// std::cout << "size and capacity > > " << vec.size() << " " << vec.capacity() << std::endl;
+	// std::cout << " >> " << *(vec.rbegin() - 1) << " r_end << " << *(vec.rend()) << std::endl;
+	// for (ft::vector <int>::iterator it = vec.begin(); it != vec.end(); it++) 
+	// 	std::cout << *it << std::endl;
+	// for (ft::vector<int>::reverse_iterator iter = vec.rbegin(); iter != vec.rend(); ++iter) 
+	// 	{
+	// 		std::cout << *iter << std::endl;
+	// 	}
 		//testing relational operators
 		// std::vector<int> foo (3,100);   // three ints with a value of 100
 		// std::vector<int> bar (2,200);   // two ints with a value of 200
@@ -25,7 +40,6 @@ int main()
 	// // ft::vector <int> fq(10, 5);
 	// std::vector <int> f1;
 	// ft::vector <int> f1(3, 100);
-	// std::cout << "size and capacity > > " << f1.size() << " " << f1.capacity() << std::endl;
 	// f1.insert(f1.begin(), 200);
 	// f1.insert(f1.begin(), 2,300);
 	// // f1.push_back(30);

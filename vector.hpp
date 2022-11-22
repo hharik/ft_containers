@@ -1,6 +1,6 @@
 
-#ifndef VECTOR_HPP_
-# define VECTOR_HPP_
+#ifndef VECTOR_HPP
+# define VECTOR_HPP
 
 
 #include <iterator>
@@ -18,14 +18,15 @@ namespace ft
 		typedef Allocator                                allocator_type;
 		typedef typename allocator_type::reference       reference;
 		typedef typename allocator_type::const_reference const_reference;
+		typedef iterator<const value_type>				 const_iterator;
+		typedef iterator<value_type>					 iterator;
 		typedef typename allocator_type::size_type       size_type;
 		typedef typename allocator_type::difference_type difference_type;
 		typedef typename allocator_type::pointer         pointer;
 		typedef typename allocator_type::const_pointer   const_pointer;
-		typedef iterator<pointer>							iterator;
-		// typedef iterator<pointer> 	                     const_iterator;
-		typedef reverse_iterator<iterator>          reverse_iterator;
-		// typedef reverse_iterator<const_iterator>    const_reverse_iterator;
+		typedef reverse_iterator<const_iterator>     const_reverse_iterator;
+		typedef reverse_iterator<iterator>  reverse_iterator;
+
 		vector(): _size(0), _capacity(0),ptr(nullptr) {}
 		vector(const vector& other) 
 		{
@@ -87,24 +88,36 @@ namespace ft
 		reference front(){return *(ptr);}
 
 		//reverse && iterator begin() && end()
+	
 		iterator begin() {return iterator(ptr);}
-		// const_iterator begin() const{return iterator(ptr);} //still working on const 
-		// const_iterator end() const { return iterator(ptr + _size);}
 		iterator end() { return iterator((ptr  + _size));}
+		const_iterator begin() const{return const_iterator(ptr);} //still working on const 
+		const_iterator end() const { return const_iterator(ptr + _size);}
 		reverse_iterator rbegin() { return (reverse_iterator(ptr + _size));}
-		// const_reverse_iterator rbegin() const { return reverse_iterator(ptr + _size);}
 		reverse_iterator rend(){return reverse_iterator(ptr);}
-		// const_reverse_iterator rend() const{return reverse_iterator(ptr);}
-//still working on it  // template <class InputIterator> void insert (iterator position, InputIterator first, InputIterator last)
-		// {
-		// 	while (first != last)
-		// 	{
-		// 		insert(position, *first);
-		// 		// std::cout << *first << std::endl;
-		// 		first++;
-		// 		position++;
-		// 	}
-		// }
+		const_reverse_iterator rbegin() const { return reverse_iterator(ptr + _size);}
+		const_reverse_iterator rend() const{return reverse_iterator(ptr);}
+		template <class InputIterator> void insert (iterator position, InputIterator first, InputIterator last)
+		{
+			int i = 0;
+			InputIterator p = first;
+			while (p != last && i <= (last - first))
+			{
+				std::cout << *(p) << std::endl;
+				insert(position, *(p));
+				i++;
+				p++;
+			}
+			// size_type j = 0;
+			// size_type i = last - first;
+			// while (first != last && j < i){
+			// 	insert(position + j, first);
+			// 	first++;
+			// 	j++;
+
+			// }
+		}
+
 		void insert (iterator position, size_type n, const value_type& val)
 		{
 			int i = 0;

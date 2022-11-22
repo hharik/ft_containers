@@ -1,20 +1,58 @@
 #include "vector.hpp"
 
+// class conv_clas{
+// 	public:
+// 	int nb;
+// 		conv_clas(){}
+// 		conv_clas(int a):nb(a) {}
+// 		operator int (){return nb;}
+// };
+
+	// int b = 0;
+	// std::cout<<"b before"<<b<<std::endl;
+	// conv_clas cv = 9;
+	// b = cv;
+	// std::cout<<"b after"<<b<<std::endl;
 int main()
 {
 
-	ft::vector<int> vec;
-	vec.push_back(96);
-	vec.push_back(92);
-	vec.push_back(91);
-	vec.push_back(93);
-	ft::vector<int>::reverse_iterator rv = vec.rbegin();
-	std::cout<<*(rv - 1)<<std::endl;
-	// std::cout << "size and capacity > > " << vec.size() << " " << vec.capacity() << std::endl;
+	ft::vector<int> myvector (3,100);
+	myvector.push_back(50);
+	myvector.push_back(52);
+	myvector.push_back(51);
+	myvector.push_back(51);
+
+	// ft::vector<int>::const_reverse_iterator it = myvector.rend() - 1;
+	int myarray[] = {251, 5, 89};
+	std::cout << "size and capacity > > " << myvector.size() << " " << myvector.capacity() << std::endl;
+	myvector.insert(myvector.begin(), myarray, myarray + 2);
+	for (ft::vector<int>::iterator it = myvector.begin(); it != myvector.end(); ++it)
+		std::cout << *(it) << std::endl;
+	// ft::vector<int>::iterator it;
+
+	// it = myvector.begin();
+	// it = myvector.insert ( it , 200 );
+
+	// myvector.insert (it,2,300);
+
+	// "it" no longer valid, get a new one:
+	// it = myvector.begin();
+
+	// ft::vector<int> anothervector (2,400);
+	// myvector.insert (it+2,anothervector.begin(),anothervector.end());
+
+	// int myarray [] = { 501,502,503 };
+	// myvector.insert (myvector.begin(), myarray, myarray+3);
+	// std::cout<< *(myarray + 1)<<std::endl;
+	// std::cout << "myvector contains:";
+	// for (it=myvector.begin(); it<myvector.end(); it++)
+		// std::cout << ' ' << *it;
+	// std::cout << '\n';
+
+	// for (ft::vector<int>::reverse_iterator iter = vec.rbegin(); iter != vec.rend(); ++iter) 
 	// std::cout << " >> " << *(vec.rbegin() - 1) << " r_end << " << *(vec.rend()) << std::endl;
 	// for (ft::vector <int>::iterator it = vec.begin(); it != vec.end(); it++) 
 	// 	std::cout << *it << std::endl;
-	// for (ft::vector<int>::reverse_iterator iter = vec.rbegin(); iter != vec.rend(); ++iter) 
 	// 	{
 	// 		std::cout << *iter << std::endl;
 	// 	}

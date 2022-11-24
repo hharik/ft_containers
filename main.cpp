@@ -15,18 +15,19 @@
 	// std::cout<<"b after"<<b<<std::endl;
 int main()
 {
+	int number [] = {1,13,4,57};
+	// ft::Vector<int> second (4,100);                       
+	ft::Vector<int> third;
+	third.push_back(5);
+	// third.push_back(10);
 
-	ft::vector<int> myvector (3,100);
-	myvector.push_back(50);
-	myvector.push_back(52);
-	myvector.push_back(51);
-	myvector.push_back(51);
-
-	// ft::vector<int>::const_reverse_iterator it = myvector.rend() - 1;
-	int myarray[] = {251, 5, 89};
-	std::cout << "size and capacity > > " << myvector.size() << " " << myvector.capacity() << std::endl;
-	myvector.insert(myvector.begin(), myarray, myarray + 2);
-	for (ft::vector<int>::iterator it = myvector.begin(); it != myvector.end(); ++it)
+	third.insert(third.begin(), number, number + 3);
+	
+	// // ft::vector<int>::const_reverse_iterator it = myvector.rend() - 1;
+	// int myarray[] = {251, 5, 89};
+		// std::cout << "size and capacity > > " << myvector.size() << " " << myvector.capacity() << std::endl;
+		// myvector.insert(myvector.begin(), myarray, myarray + 2);
+	for (ft::Vector<int>::iterator it = third.begin()  ; it != third.end(); ++it)
 		std::cout << *(it) << std::endl;
 	// ft::vector<int>::iterator it;
 

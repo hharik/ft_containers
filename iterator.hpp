@@ -3,6 +3,7 @@
 
 namespace ft
 {
+
 	template<class T>
 	struct iterator_traits
 	{

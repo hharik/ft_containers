@@ -15,13 +15,13 @@
 	// std::cout<<"b after"<<b<<std::endl;
 int main()
 {
-	int number [] = {1,13,4,57};
+	int number [] = {1, 2, 6,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5};
 	// ft::Vector<int> second (4,100);                       
-	ft::Vector<int> third;
+	ft::Vector<int> third(2, 3);
 	third.push_back(5);
 	// third.push_back(10);
 
-	third.insert(third.begin(), number, number + 3);
+	third.insert(third.begin(), number, number + 15);
 	
 	// // ft::vector<int>::const_reverse_iterator it = myvector.rend() - 1;
 	// int myarray[] = {251, 5, 89};

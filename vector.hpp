@@ -109,43 +109,30 @@ namespace ft
 		reverse_iterator rend(){return reverse_iterator(ptr);}
 		const_reverse_iterator rbegin() const { return reverse_iterator(ptr + _size);}
 		const_reverse_iterator rend() const{return reverse_iterator(ptr);}
-		template <class InputIterator> void insert (iterator position, InputIterator first, InputIterator last, typename ft::enable_if< !std::is_integral<InputIterator>::value, InputIterator>::type* = nullptr)
+		template <class InputIterator> void insert(iterator position, InputIterator first, InputIterator last, typename ft::enable_if< !std::is_integral<InputIterator>::value, InputIterator>::type* = nullptr)
 		{
-			size_type i  = 0;
-			// while (first != last)
-			// {
-			// 	std::cout << *first << " " << std::endl;
-			// 	first++;
-			// }
-			// return ;
+			size_type index = position - begin();
 			Vector tmp;
 			tmp.assign(first, last);
+			size_type n  = tmp.size();
+			// std::cout << n << std::endl;
 			if (_size + tmp.size() > _capacity)
 			{
 				if (_capacity == 0)
 					reserve(tmp.size());
-				else if (_capacity > 0)
+				else if (_size + tmp.size() < (2 * _capacity))
 					reserve(2 * _capacity);
+				else if (_size + tmp.size() > (2 * _capacity))
+					reserve(_size + tmp.size());
 			}
-			while ((first + i) != last)
-			{
-				// std::cout << *first << " " << std::endl;
-				allc.construct(ptr + _size, *(tmp.begin() + i));
-				_size++;
-				iterator prev_val  = end() - 2;
-				iterator new_val = end() - 1;
-				while (new_val != position)
-				{
-					*new_val = *prev_val;
-					new_val--;
-					if(new_val != position)
-						prev_val--;
-				}
-				*new_val = *first;
-				i++;
+			for (size_type i = _size; i > index; i--)
+			{			
+				allc.construct((ptr + i + n - 1), *(ptr + i - 1));
+				allc.destroy(ptr + i);
 			}
-			// std::cout << tmp.size() << std::endl;
-		
+			for (int i = index; i < tmp.size() ;i++, first++)
+				allc.construct(ptr + i, *first);
+			_size += n;
 		}
 
 		void insert (iterator position, size_type n, const value_type& val)

@@ -134,7 +134,7 @@ namespace ft
 			for (size_type i = _size; i > index; i--)
 			{			
 				allc.construct((ptr + i + n - 1), *(ptr + i - 1));
-				// allc.destroy(ptr + i);
+				// allc.destroy(ptr + i - 1);
 			}
 			for (size_type i = index; i < tmp.size() ;i++, first++)
 				*(ptr + i) = *first;
@@ -323,7 +323,7 @@ namespace ft
 		void pop_back()
 		{
 			if (_size > 0)
-				allc.destroy(ptr + _size--);
+				allc.destroy(ptr + --_size);
 		}
 		void push_back(const value_type& val)
 		{

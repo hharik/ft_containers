@@ -246,14 +246,17 @@ namespace ft
 		{
 			
 			if (n > _size)
-			{	
-				reserve(n);
+			{
+				if (n > _capacity)
+					reserve(2 * _capacity);
+				if (n > _size)
+					reserve(n);
 				for (size_type i = 0; i < (_size - n); i++)
 					push_back(val);
 				_size = n;
 				
 			}
-			else
+			if (n < _size)
 			{
 				for (size_type i = n; i < _size; i++)
 					allc.destroy(ptr + i);

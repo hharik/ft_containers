@@ -58,9 +58,11 @@ int main()
 	v.resize(14, "helloWorld");
 	v.resize(6, "ABC");
 	v.resize(14, b_string[18]);
-	v.resize(15, b_string[57]);
-	// v.resize(64, "I-like-vectors");
 	std::cout << "v1 size and capacity > > " << v.size() << " " << v.capacity() << std::endl;
+	v.resize(15, b_string[57]);
+	std::cout << "v1 size and capacity > > " << v.size() << " " << v.capacity() << std::endl;
+
+	// v.resize(64, "I-like-vectors");
 	for (ft::vector<std::string>::iterator r = v.begin(); r != v.end(); r++)
 		std::cout << *r << std::endl;
 	

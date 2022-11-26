@@ -1,5 +1,6 @@
 #include "vector.hpp"
 #include <iostream>
+#include <cstddef>
 #include <sstream>
 // class conv_clas{
 // 	public:
@@ -14,10 +15,20 @@
 	// conv_clas cv = 9;
 	// b = cv;
 	// std::cout<<"b after"<<b<<std::endl;
-int main()
-{
-	std::size_t b_size = 64;   
-	std::string b_string[64] = {                                                                   \
+ std::string s_string[32] = {                                                                   \
+        "QExoqp0nICr0sXsHqty2", "naax9QcpJhvaL7DezsNQ", "25ZTtB6wbptfbxM8AvHB",                    \
+        "tShYNtc0MkdjqLrOatgz", "7Z3kf1Qec0NnsLSEpbOt", "WhkSNrKJC966fvjZ2Or1",                    \
+        "8vlxlFRRgW7yYj4GO7dt", "5sq1aoT8zP0HaHj3nFOK", "61Dv31GYZhkgjKCErpng",                    \
+        "l0IIcWWHhOcPzoxEamQM", "bE1RYclskwXlhCm46YFs", "kXeoi5qz94JYPqSDTs79",                    \
+        "TFsQP1dz8VVos9KzUpY0", "b3wYQR7An193gjgYuRj3", "xSmyNsnSJ47jLqrvbpyr",                    \
+        "guAIP2Wq43Gf8VhHsyu5", "yT6c2loPebHovnq9BQog", "3qvU1xcVm2g1DKFDlqh4",                    \
+        "L0q8RR9P41VD4sVjdnWl", "YdjESsIZM4b1oGQPjpBe", "l1ZVQbWKw7brHUSimJgq",                    \
+        "xdn0cf4vqRzpfXWtl10G", "lYnZvpqaV0s8DowMZwzV", "8P1cyKrwJNLoJyvLjYqO",                    \
+        "4MhOXNbAX23CEijO5cRT", "tHe3miAwCOVQbuoLaEP2", "l6uNLsc8fiLl3eWoG6j6",                    \
+        "477xt6l0lph9ALQdr4HX", "D9UJNe4s8YF02LhrwOdl", "dLCisBNOdE8yugntu6cj",                    \
+        "YvY4aQFHgAuagn4dFLO1", "eGR6Dtv7LW75qlV5Fkik"                                             \
+    };                                                                
+	 std::string b_string[64] = {                                                                   \
         "uvg6KqtcgduR31n3ajsv", "wbiAcjgojb9JOagZwyMn", "ATZKCzaPOqgkhPjwuGlf",                    \
         "MOhaJs56yjOw8f6nLPRA", "0gyB2Tr42v6awMw2nK7J", "e6GsiLFUuoDpVFEhJKZ1",                    \
         "z0jXAhiV9keBsaLOY0Xf", "P68p2ZAosHJdmoZh1C7N", "Pu3EuZVeY0TCO3ojdK0t",                    \
@@ -40,16 +51,107 @@ int main()
         "olIewtUEvXJgs1lB9bCn", "dTsPDS0x2uXtcgOIJHb8", "DYvJ2phLppGNZKboTBrd",                    \
         "DjNFMtt9PxkzqvWBHI6j", "1Z3YkeTFlPniKnzFhzgu", "76XqQg6hqMf5IXxKPOEs",                    \
         "gzaapTWW7i9EZjjzLeK6"                                                                     \
-	};
+    }; 
+int main()
+{
+	ft::vector <std::string> v;
+	v.resize(14, "helloWorld");
+	v.resize(6, "ABC");
+	v.resize(14, b_string[18]);
+	v.resize(15, b_string[57]);
+	// v.resize(64, "I-like-vectors");
+	std::cout << "v1 size and capacity > > " << v.size() << " " << v.capacity() << std::endl;
+	for (ft::vector<std::string>::iterator r = v.begin(); r != v.end(); r++)
+		std::cout << *r << std::endl;
+	
+
+
+
+
+
+
+	// std::size_t b_size = 64; 
+	// std::size_t s_size = 32;
+	// ft::vector <std::string> v;
+	// v.insert(v.begin(), v.begin(), v.begin());
+	// v.insert(v.begin(), v.begin(), v.end());
+	// v.insert(v.end(), v.begin(), v.end());
+	// v.insert(v.begin(), s_string, s_string + s_size);
+	// v.insert(v.begin(), b_string, b_string + 10);
+	// v.insert(v.begin() + 20, b_string, b_string + b_size);
+
+
+	// ft::vector<std::string> v;
+ 	// v.insert(v.begin() + 115, (std::size_t)std::numeric_limits<std::ptrdiff_t>::max(),"123");
+	// // v.insert(v.begin(), 0, 64);
+	// // v.insert(v.end(), 0, 64);
+	// // v.insert(v.end(), 10, 64);
+	// // v.insert(v.begin(), 5, -1);
+	// // v.insert(v.begin() + 1, 1, -9);
+	// // v.insert(v.begin() + 7, 21, 88);
+	// // v.insert(v.begin(), 0, 2);
+	// // v.insert(v.end(), 0, 4);
+	// // v.insert(v.end(), 18, 420);
+	// std::cout << "v1 size and capacity > > " << v.size() << " " << v.capacity() << std::endl;
+	// for (ft::vector<std::string>::iterator r = v.begin(); r != v.end(); r++)
+	// 	std::cout << *r << std::endl;
+	
+	
+
+
+
+	// std::cout <<b_string[54] << std::endl;
+	// ft::vector <std::string> v;
+	// ft::vector <std::string>::iterator	it = v.insert(v.end(), b_string[54]);
+	// std::cout << " ******************************** " << std::endl;
+	// it = v.insert(v.end(), b_string[23]);
+	// for (ft::vector<std::string>::iterator r = v.begin(); r != v.end(); r++)
+	// 	std::cout << *r << std::endl;
+	// std::cout << " ******************************** " << std::endl;
+	// std::cout << "v1 size and capacity > > " << v.size() << " " << v.capacity() << std::endl;
+
+	// std::vector<std::string> ar(1, "hello world");
+	// for (std::vector<std::string>::iterator it = ar.begin(); it != ar.end(); it++)
+	// 		std::cout << *it << " ";
+	// std::cout << std::endl;
+	// std::cout << "v1 size and capacity > > " << ar.size() << " " << ar.capacity() << std::endl;
+	// ar.erase(ar.begin() );
+	// for (std::vector<std::string>::iterator it = ar.begin(); it != ar.end(); it++)
+	// 		std::cout << *it << " ";
+	// std::cout << "v1 size and capacity > > " << ar.size() << " " << ar.capacity() << std::endl;
 	// ft::vector<std::string> v1;
 	// std::vector<std::string> v2(2, "hello world");
 
 	// for (std::vector<std::string>::iterator it = v2.begin(); it != v2.end(); ++it)
 	// 	std::cout << *it << std::endl;
+	// std::size_t b_size = 64;   
+	// std::string b_string[64] = {                                                                   \
+    //     "uvg6KqtcgduR31n3ajsv", "wbiAcjgojb9JOagZwyMn", "ATZKCzaPOqgkhPjwuGlf",                    \
+    //     "MOhaJs56yjOw8f6nLPRA", "0gyB2Tr42v6awMw2nK7J", "e6GsiLFUuoDpVFEhJKZ1",                    \
+    //     "z0jXAhiV9keBsaLOY0Xf", "P68p2ZAosHJdmoZh1C7N", "Pu3EuZVeY0TCO3ojdK0t",                    \
+    //     "z7jCHMooHCS73M8GygKB", "uT4KoK83JrZxZjkul7ty", "g8gfrZoY5XwfzRusvHvv",                    \
+    //     "7PGmkM0OSRnYREt9mFIP", "q1od7mBIpPEsCtpF9kdw", "XQo0LWId5TdZnLnpUNOb",                    \
+    //     "U0m1R0kFFhAFyS6hmHHw", "K0lPKfxJxIOnE8QB90xn", "cZ5xyQifMJhrKxqBK9A7",                    \
+    //     "cFBiwjfYw7Js6qEGy5Kt", "1tW0KWfXxeFO69tByqcE", "3Fvq9NxBrhPXHe0IlIVx",                    \
+    //     "MSRDjdFRvHAhFGhiMtDe", "zGm2joMh71jQkYzg5L4V", "Mq4RRaeLvSAO0z2ibp8Q",                    \
+    //     "WnLFYnQKP8TNJkqVVbUg", "E98UphbbVSzrW5Mzurmg", "F8HRxeEcaTZDkFPkioij",                    \
+    //     "jmUVl4Q8X5BwVNzXN219", "n7Xp4w4FwzGKit7AI4SO", "4MxXYr6rKOcXLt9UkVd2",                    \
+    //     "4RVTDsADtRyboaai9d29", "XaSqsrrtdhAfFoJIc5KK", "9Z9jdVCrTT09bg348ceb",                    \
+    //     "I6uqLG9dO5mfNdSMwOYm", "UwMTzJPlbnhgwbHpDi6w", "DebjMP9afncYE6GhhO00",                    \
+    //     "YGPuscYDiGfAjY1UWST0", "K6gbvgGjVZgEFUDlkdSk", "8xCBPI0w6TpC0RA62c2W",                    \
+    //     "fYMxkNwmKg3moP8KvD9v", "QpPdhwhEYjIugg3OPcPH", "qQBXjSn43I3EMP54SyxZ",                    \
+    //     "7qvdKwoW1CQEZTWPvuSC", "rCT212rdYO0zTGHXesKg", "dBHvlHsBwcR9MkkenYYG",                    \
+    //     "NQiSlergqR8fVbOeivLj", "xYVqsV147UIe7jVBVwXo", "tcxayO4DdEJ885TbqUMy",                    \
+    //     "9TGSMTD8U8ksRpHqq0cL", "TIJ16jCv9BSUiWvhbF9T", "BM9GL2ig1hePkA6lM6Ck",                    \
+    //     "TfJTYB9JQMU6CGcYg20Q", "Fg6e5YT2FQbpTZNTDqdo", "LI5q6ml40MeE9H1dPb93",                    \
+    //     "OaxJUSm3nYN9Y8Ela7sS", "BgBeODAwXz7xJo50Rwqd", "xdkgKj1dEoJ6zuVhkvvo",                    \
+    //     "olIewtUEvXJgs1lB9bCn", "dTsPDS0x2uXtcgOIJHb8", "DYvJ2phLppGNZKboTBrd",                    \
+    //     "DjNFMtt9PxkzqvWBHI6j", "1Z3YkeTFlPniKnzFhzgu", "76XqQg6hqMf5IXxKPOEs",                    \
+    //     "gzaapTWW7i9EZjjzLeK6"                                                                     \
+	// };
 	// // v1 = v2;
 	// std::vector<std::string> v1(b_string, b_string + b_size);
 	// v2 = v1;
-	// // std::cout << "v1 size and capacity > > " << v1.size() << " " << v1.capacity() << std::endl;
 	// for (std::vector<std::string>::iterator it = v1.begin(); it != v1.end(); ++it)
 	// 	std::cout << *it << std::endl;
 	// std::cout << v1.size() << std::endl;
@@ -59,14 +161,14 @@ int main()
 	
 	// v.assign(it, end);
 	// std::cout << "size and capacity > > " << v.size() << " " << v.capacity() << std::endl;
+	// for (ft::vector<char>::iterator i = v.begin(); i != v.end(); i++)
+	// 		std::cout << " " <<  *i ;
 	
 	// ft::vector <char> v;
 	// char tab[3] = { 'a', 'b','r'};
 	// v.assign(tab, tab + 2);
 	// std::cout << "size and capacity > > " << v.size() << " " << v.capacity() << std::endl;
 
-	// for (ft::vector<char>::iterator i = v.begin(); i != v.end(); i++)
-	// 		std::cout << " " <<  *i ;
 
 	// std::cout << std::endl <<  "//********************************************** STD\\" << std::endl;
 	// std::vector <char> v1;

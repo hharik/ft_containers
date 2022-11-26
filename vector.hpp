@@ -39,7 +39,7 @@ namespace ft
 			assign(first, last);
 		}
 
-		explicit vector(): ptr(nullptr), _size(0), _capacity(0) {}
+		explicit vector(const allocator_type& alloc = allocator_type()): ptr(nullptr), _size(0), _capacity(0), allc(alloc) {}
 		vector(const vector& other) 
 		{
 			_size = other._size;
@@ -134,22 +134,24 @@ namespace ft
 			for (size_type i = _size; i > index; i--)
 			{			
 				allc.construct((ptr + i + n - 1), *(ptr + i - 1));
-				allc.destroy(ptr + i);
+				// allc.destroy(ptr + i);
 			}
 			for (size_type i = index; i < tmp.size() ;i++, first++)
-				allc.construct(ptr + i, *first);
+				*(ptr + i) = *first;
 			_size += n;
 		}
 		void insert (iterator position, size_type n, const value_type& val)
 		{
-			// if (position > _size)
-			// 	return ;
+			if (n > max_size())
+				throw std::length_error("vector");
 			size_type index = position  - begin();
 			if (_size + n > _capacity)
 			{
 				if (_capacity == 0)
-					reserve(2 * _capacity + 1);
-				else if (_capacity > 0)
+					reserve(n);
+				// else if (_size + n > (2 * _capacity))
+				// 	reserve(n);
+				else
 					reserve(2 * _capacity);
 			}
 			for (size_type j = 0 ; j < n; j++)
@@ -200,21 +202,21 @@ namespace ft
 				i--;
 			}
 			*new_val = val;
-			return (iterator(ptr));
+			return (iterator(new_val));
 		}
 
 		iterator erase (iterator position)
 		{
-			size_type index = position  - begin();
-			// std::cout << index << std::endl;
+			size_type j = 0;
+			size_type index = position - begin();
+			std::cout << index << std::endl;
 			pointer tmp = allc.allocate(_capacity);
 			size_type i = 0;
-			size_type j =  0;
 			while (i < _size)
 			{
 				if (i != index)
 				{
-					allc.construct(tmp + j, *(ptr + i));
+					allc.construct((tmp + j), *(ptr + i));
 					j++;
 				}
 				i++;
@@ -225,9 +227,11 @@ namespace ft
 				allc.destroy(ptr + i);
 				i++;
 			}
+			// allc.deallocate(ptr, _capacity);
+			// ptr = allc.allocate(_capacity);
 			_size--;
 			ptr = tmp;
-			return (iterator(ptr));
+			return (begin() - 1);
 		}
 		iterator erase (iterator first, iterator last)
 		{
@@ -240,19 +244,20 @@ namespace ft
 		}
 		void resize (size_type n, value_type val = value_type())
 		{
+			
 			if (n > _size)
-			{
+			{	
+				reserve(n);
 				for (size_type i = 0; i < (_size - n); i++)
 					push_back(val);
 				_size = n;
-				return ;
+				
 			}
-			if (n < _size)
+			else
 			{
 				for (size_type i = n; i < _size; i++)
 					allc.destroy(ptr + i);
 				_size = n;
-				return ;
 			}
 
 		}
@@ -266,7 +271,7 @@ namespace ft
 				throw std::length_error("vector");
 			clear();
 			if (n > _capacity)
-				reserve(n);
+				reserve(a._capacity);
 			
 			for (size_type i = 0; i < n; i++)
 			{

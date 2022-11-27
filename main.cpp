@@ -54,17 +54,30 @@
     }; 
 int main()
 {
-	ft::vector <std::string> v;
-	v.resize(14, "helloWorld");
-	v.resize(6, "ABC");
-	v.resize(14, b_string[18]);
-	std::cout << "v1 size and capacity > > " << v.size() << " " << v.capacity() << std::endl;
-	v.resize(15, b_string[57]);
-	std::cout << "v1 size and capacity > > " << v.size() << " " << v.capacity() << std::endl;
 
-	// v.resize(64, "I-like-vectors");
-	for (ft::vector<std::string>::iterator r = v.begin(); r != v.end(); r++)
-		std::cout << *r << std::endl;
+	std::string str = "hello world ";
+	ft::vector <char> v(str.begin(), str.end());
+	std::cout << "v1 size and capacity > > " << v.size() << " " << v.capacity() << std::endl;
+	for (ft::vector<char>::iterator r = v.begin(); r != v.end(); r++)
+		std::cout << *r;
+
+
+
+	// std::cout << "THERESS : " << std::vector<unsigned char>().max_size() << std::endl;
+	// std::cout <<" MINE : " << ft::vector<unsigned char>().max_size() << std::endl;
+	// std::cout << "THERESS : " << std::vector<char>().max_size() << std::endl;
+	// std::cout <<" MINE : " << ft::vector<char>().max_size() << std::endl;
+	// std::cout << "THERESS : " << std::vector<int>().max_size() << std::endl;
+	// std::cout <<" MINE : " << ft::vector<int>().max_size() << std::endl;
+	// std::cout << "THERESS : " << std::vector<long>().max_size() << std::endl;
+	// std::cout <<" MINE : " << ft::vector<long>().max_size() << std::endl;
+	// ft::vector <std::string> v;
+	// v.resize(14, "helloWorld");
+	// v.resize(6, "ABC");
+	// v.resize(14, b_string[18]);
+	// v.resize(15, b_string[57]);
+
+	// // v.resize(64, "I-like-vectors");
 	
 
 

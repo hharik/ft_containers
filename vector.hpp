@@ -36,7 +36,29 @@ namespace ft
 
 		template <class InputIterator> vector(InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type(), typename ft::enable_if< !std::is_integral<InputIterator>::value, InputIterator>::type* = nullptr) : ptr(nullptr) , _size(0), _capacity(0),  allc(alloc)
 		{
-			assign(first, last);
+			vector a;
+			for (;first != last; first++)
+				a.push_back(*first);
+			size_type n = a.size();
+			if (_capacity == 0)
+				reserve(a._capacity);
+			if (n > max_size())
+				throw std::length_error("vector");
+			clear();
+			if (n > _capacity)
+			{
+				// std::cout << "urmomw !! "<< _capacity << " " <<  n << std::endl;
+				// if (_capacity == 0)
+				// 	reserve(n);
+				// else
+					reserve(a._capacity);
+			}
+			for (size_type i = 0; i < n; i++)
+			{
+				allc.construct(ptr + i, a[i]);
+				_size++;
+			}
+			// assign(first, last);
 		}
 
 		explicit vector(const allocator_type& alloc = allocator_type()): ptr(nullptr), _size(0), _capacity(0), allc(alloc) {}
@@ -117,11 +139,12 @@ namespace ft
 
 		template <class InputIterator> void insert(iterator position, InputIterator first, InputIterator last, typename ft::enable_if< !std::is_integral<InputIterator>::value, InputIterator>::type* = nullptr)
 		{
+			//still shit implementation
 			size_type index = position - begin();
 			vector tmp;
 			tmp.assign(first, last);
 			size_type n  = tmp.size();
-			// std::cout << n << std::endl;
+		
 			if (_size + tmp.size() > _capacity)
 			{
 				if (_capacity == 0)
@@ -133,11 +156,13 @@ namespace ft
 			}
 			for (size_type i = _size; i > index; i--)
 			{			
-				allc.construct((ptr + i + n - 1), *(ptr + i - 1));
-				// allc.destroy(ptr + i - 1);
+				allc.construct((ptr + i - 1 + n), *(ptr + i - 1));
+				allc.destroy(ptr + i - 1);
 			}
-			for (size_type i = index; i < tmp.size() ;i++, first++)
-				*(ptr + i) = *first;
+			
+			for (size_type i = 0; i < n ;i++){
+				allc.construct((ptr + (index) + i), tmp[i]);
+			}
 			_size += n;
 		}
 		void insert (iterator position, size_type n, const value_type& val)
@@ -207,31 +232,44 @@ namespace ft
 
 		iterator erase (iterator position)
 		{
-			size_type j = 0;
-			size_type index = position - begin();
-			std::cout << index << std::endl;
-			pointer tmp = allc.allocate(_capacity);
-			size_type i = 0;
-			while (i < _size)
-			{
-				if (i != index)
-				{
-					allc.construct((tmp + j), *(ptr + i));
-					j++;
-				}
-				i++;
-			}
-			i = 0;
-			while (i < _size)
-			{
-				allc.destroy(ptr + i);
-				i++;
-			}
+			size_type pos = position - begin();
+			vector a(begin(),position);
+			vector b(position + 1, end());
+			*this = a;
+			insert(end(), b.begin(), b.end());
+			// size_type j = 0;
+			// size_type index = position - begin();
+			// pointer tmp = allc.allocate(_capacity);
+			// size_type i = 0;
+			// while (i < _size)
+			// {
+			// 	if (i != index)
+			// 	{
+			// 		allc.construct((tmp + j), *(ptr + i));
+			// 		j++;
+			// 	}
+			// 	i++;
+			// }
+			// i = 0;
+			// clear();
+			// _size--;
+			// while (i < _size)
+			// {
+			// 	allc.construct(ptr + i, *(tmp + i));
+			// 	i++;
+			// }
+			// for (size_type j = 0; j < _size + 1; ++j)
+			// 	allc.destroy(tmp + j);
+			// allc.deallocate(tmp, _capacity);
 			// allc.deallocate(ptr, _capacity);
 			// ptr = allc.allocate(_capacity);
-			_size--;
-			ptr = tmp;
-			return (begin() - 1);
+			// while (i < _size)
+			// {
+			// 	allc.construct(ptr + i, *(tmp + i));
+			// 	i++;
+			// }
+			// ptr = tmp;
+			return (ptr + pos);
 		}
 		iterator erase (iterator first, iterator last)
 		{
@@ -270,12 +308,13 @@ namespace ft
 			for (;first != last; first++)
 				a.push_back(*first);
 			size_type n = a.size();
+			if (_capacity == 0)
+				reserve(a._capacity);
 			if (n > max_size())
 				throw std::length_error("vector");
 			clear();
 			if (n > _capacity)
 				reserve(a._capacity);
-			
 			for (size_type i = 0; i < n; i++)
 			{
 				allc.construct(ptr + i, a[i]);

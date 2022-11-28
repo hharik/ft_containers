@@ -55,19 +55,20 @@
 int main()
 {
 
-   std::istringstream str("12345"); // push_back //input_iterator_tag
-    std::istreambuf_iterator<char> it(str), end;
-	ft::vector <char> v(it, end);
-	std::cout << "v1 size and capacity > > " << v.size() << " " << v.capacity() << std::endl;
-	for (ft::vector<char>::iterator r = v.begin(); r != v.end(); r++)
-		std::cout << *r;
-	std::cout << " ************** " << std::endl;
+	
+//    std::istringstream str("12345"); // push_back //input_iterator_tag
+//     std::istreambuf_iterator<char> it(str), end;
+// 	ft::vector <char> v(it, end);
+// 	std::cout << "v1 size and capacity > > " << v.size() << " " << v.capacity() << std::endl;
+// 	for (ft::vector<char>::iterator r = v.begin(); r != v.end(); r++)
+// 		std::cout << *r;
+// 	std::cout << " ************** " << std::endl;
 
-	std::string str1 = "Hello world!"; // len // forward_iterator_tag
-	ft::vector<char> v1(str1.begin(), str1.end());
-	std::cout << "v1 size and capacity > > " << v1.size() << " " << v1.capacity() << std::endl;
-	for (ft::vector<char>::iterator r = v1.begin(); r != v1.end(); r++)
-		std::cout << *r;
+// 	std::string str1 = "Hello world!"; // len // forward_iterator_tag
+// 	ft::vector<char> v1(str1.begin(), str1.end());
+// 	std::cout << "v1 size and capacity > > " << v1.size() << " " << v1.capacity() << std::endl;
+// 	for (ft::vector<char>::iterator r = v1.begin(); r != v1.end(); r++)
+// 		std::cout << *r;
 
 
 	// std::cout << "THERESS : " << std::vector<unsigned char>().max_size() << std::endl;

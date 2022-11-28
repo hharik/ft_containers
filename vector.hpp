@@ -61,7 +61,7 @@ namespace ft
 		}
 		
 		template <class InputIterator>
-		vector(InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type()) 
+		vector(InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type(), typename ft::enable_if< !std::is_integral<InputIterator>::value, InputIterator>::type* = nullptr) 
 		: ptr(nullptr) , _size(0), _capacity(0),  allc(alloc)
 		{
 			typename ft::iterator_traits<InputIterator>::iterator_category test;
@@ -244,38 +244,6 @@ namespace ft
 			vector b(position + 1, end());
 			*this = a;
 			insert(end(), b.begin(), b.end());
-			// size_type j = 0;
-			// size_type index = position - begin();
-			// pointer tmp = allc.allocate(_capacity);
-			// size_type i = 0;
-			// while (i < _size)
-			// {
-			// 	if (i != index)
-			// 	{
-			// 		allc.construct((tmp + j), *(ptr + i));
-			// 		j++;
-			// 	}
-			// 	i++;
-			// }
-			// i = 0;
-			// clear();
-			// _size--;
-			// while (i < _size)
-			// {
-			// 	allc.construct(ptr + i, *(tmp + i));
-			// 	i++;
-			// }
-			// for (size_type j = 0; j < _size + 1; ++j)
-			// 	allc.destroy(tmp + j);
-			// allc.deallocate(tmp, _capacity);
-			// allc.deallocate(ptr, _capacity);
-			// ptr = allc.allocate(_capacity);
-			// while (i < _size)
-			// {
-			// 	allc.construct(ptr + i, *(tmp + i));
-			// 	i++;
-			// }
-			// ptr = tmp;
 			return (ptr + pos);
 		}
 		iterator erase (iterator first, iterator last)

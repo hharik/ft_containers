@@ -248,11 +248,10 @@ namespace ft
 		}
 		iterator erase (iterator first, iterator last)
 		{
-			while (first != last)
-			{
-				erase(first);
-				first++;
-			}
+			vector tmp(begin() , first);
+			vector tmp2(last, end());
+			*this = tmp;
+			insert(end(), tmp2.begin(), tmp2.end());
 			return (iterator(ptr));
 		}
 		void resize (size_type n, value_type val = value_type())

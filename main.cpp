@@ -54,8 +54,15 @@
     }; 
 int main()
 {
+  	ft::vector<int> myvector;
+	for (int i=1; i<=10; i++) myvector.push_back(i);
+	for (ft::vector<int>::iterator r = myvector.begin(); r != myvector.end(); r++)
+		std::cout << *r << " ";
+	std::cout << std::endl;
+ 	myvector.erase (myvector.begin(),myvector.begin()+3);
+	for (ft::vector<int>::iterator r = myvector.begin(); r != myvector.end(); r++)
+		std::cout << *r << " ";
 
-	
 //    std::istringstream str("12345"); // push_back //input_iterator_tag
 //     std::istreambuf_iterator<char> it(str), end;
 // 	ft::vector <char> v(it, end);
@@ -67,8 +74,6 @@ int main()
 // 	std::string str1 = "Hello world!"; // len // forward_iterator_tag
 // 	ft::vector<char> v1(str1.begin(), str1.end());
 // 	std::cout << "v1 size and capacity > > " << v1.size() << " " << v1.capacity() << std::endl;
-// 	for (ft::vector<char>::iterator r = v1.begin(); r != v1.end(); r++)
-// 		std::cout << *r;
 
 
 	// std::cout << "THERESS : " << std::vector<unsigned char>().max_size() << std::endl;

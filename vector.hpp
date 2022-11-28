@@ -33,32 +33,39 @@ namespace ft
 		typedef reverse_iterator<const_iterator>     const_reverse_iterator;
 		typedef reverse_iterator<iterator>  reverse_iterator;
 
-
-		template <class InputIterator> vector(InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type(), typename ft::enable_if< !std::is_integral<InputIterator>::value, InputIterator>::type* = nullptr) : ptr(nullptr) , _size(0), _capacity(0),  allc(alloc)
+		template <class InputIterator> 
+		size_type len( InputIterator first, InputIterator last) const {
+			size_type i = 0;
+			while (first != last){
+				first++; i++;}
+			return i;
+		}
+		template<class iter>
+		void	allocate_for(iter first, iter last, std::forward_iterator_tag)
 		{
-			vector a;
-			for (;first != last; first++)
-				a.push_back(*first);
-			size_type n = a.size();
-			if (_capacity == 0)
-				reserve(a._capacity);
-			if (n > max_size())
-				throw std::length_error("vector");
-			clear();
-			if (n > _capacity)
+			vector tmp;
+			while (first != last)
 			{
-				// std::cout << "urmomw !! "<< _capacity << " " <<  n << std::endl;
-				// if (_capacity == 0)
-				// 	reserve(n);
-				// else
-					reserve(a._capacity);
+				tmp.push_back(*first);
+				first++;
 			}
-			for (size_type i = 0; i < n; i++)
-			{
-				allc.construct(ptr + i, a[i]);
-				_size++;
-			}
-			// assign(first, last);
+			reserve(tmp.size());
+			assign(tmp.begin(), tmp.end());
+		}
+
+		template<class iter>
+		void	allocate_for(iter first, iter last, std::input_iterator_tag)
+		{
+			// std::cout << "urmom1 " << std::endl;
+			assign(first, last);
+		}
+		
+		template <class InputIterator>
+		vector(InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type()) 
+		: ptr(nullptr) , _size(0), _capacity(0),  allc(alloc)
+		{
+			typename ft::iterator_traits<InputIterator>::iterator_category test;
+			allocate_for(first, last, test);
 		}
 
 		explicit vector(const allocator_type& alloc = allocator_type()): ptr(nullptr), _size(0), _capacity(0), allc(alloc) {}
@@ -129,7 +136,7 @@ namespace ft
 		//reverse && iterator begin() && end()
 	
 		iterator begin() {return iterator(ptr);}
-		iterator end() { return iterator((ptr  + _size));}
+		iterator end() { return iterator((ptr + _size));}
 		const_iterator begin() const{return const_iterator(ptr);} //still working on const 
 		const_iterator end() const { return const_iterator(ptr + _size);}
 		reverse_iterator rbegin() { return (reverse_iterator(ptr + _size));}
@@ -304,21 +311,11 @@ namespace ft
 		}
 		template <class InputIterator> void assign(InputIterator first, InputIterator last)
 		{
-			vector a;
-			for (;first != last; first++)
-				a.push_back(*first);
-			size_type n = a.size();
-			if (_capacity == 0)
-				reserve(a._capacity);
-			if (n > max_size())
-				throw std::length_error("vector");
 			clear();
-			if (n > _capacity)
-				reserve(a._capacity);
-			for (size_type i = 0; i < n; i++)
+			while (first != last)
 			{
-				allc.construct(ptr + i, a[i]);
-				_size++;
+				push_back(*first);
+				first++;
 			}
 		}
 
@@ -368,10 +365,10 @@ namespace ft
 		{
 			if (_size  == _capacity)
 			{
-				if (_capacity == 0)
-					reserve(2 * _capacity + 1);
-				else if (_capacity > 0)
-					reserve(2 * _capacity);
+				if (_size > 0)
+					reserve(_capacity * 2);
+				else
+					reserve(1);
 			}
 			allc.construct((ptr + _size++), val);
 		}

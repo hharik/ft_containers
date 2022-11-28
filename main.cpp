@@ -2,6 +2,9 @@
 #include <iostream>
 #include <cstddef>
 #include <sstream>
+#include "struct_utils.hpp"
+
+
 // class conv_clas{
 // 	public:
 // 	int nb;
@@ -54,14 +57,15 @@
     }; 
 int main()
 {
-  	ft::vector<int> myvector;
-	for (int i=1; i<=10; i++) myvector.push_back(i);
-	for (ft::vector<int>::iterator r = myvector.begin(); r != myvector.end(); r++)
-		std::cout << *r << " ";
-	std::cout << std::endl;
- 	myvector.erase (myvector.begin(),myvector.begin()+3);
-	for (ft::vector<int>::iterator r = myvector.begin(); r != myvector.end(); r++)
-		std::cout << *r << " ";
+	std::cout << "<int> " << ft::is_integral<double>::value << std::endl;
+  	// ft::vector<int> myvector;
+	// for (int i=1; i<=10; i++) myvector.push_back(i);
+	// for (ft::vector<int>::iterator r = myvector.begin(); r != myvector.end(); r++)
+	// 	std::cout << *r << " ";
+	// std::cout << std::endl;
+ 	// myvector.erase (myvector.begin(),myvector.begin()+3);
+	// for (ft::vector<int>::iterator r = myvector.begin(); r != myvector.end(); r++)
+	// 	std::cout << *r << " ";
 
 //    std::istringstream str("12345"); // push_back //input_iterator_tag
 //     std::istreambuf_iterator<char> it(str), end;

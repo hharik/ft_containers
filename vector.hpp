@@ -8,6 +8,7 @@
 #include <vector>
 #include <iostream>
 #include "iterator.hpp"
+#include "struct_utils.hpp"
 
 namespace ft
 {
@@ -61,7 +62,7 @@ namespace ft
 		}
 		
 		template <class InputIterator>
-		vector(InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type(), typename ft::enable_if< !std::is_integral<InputIterator>::value, InputIterator>::type* = nullptr) 
+		vector(InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type(), typename ft::enable_if< !ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr) 
 		: ptr(nullptr) , _size(0), _capacity(0),  allc(alloc)
 		{
 			typename ft::iterator_traits<InputIterator>::iterator_category test;
@@ -144,7 +145,7 @@ namespace ft
 		const_reverse_iterator rbegin() const { return reverse_iterator(ptr + _size);}
 		const_reverse_iterator rend() const{return reverse_iterator(ptr);}
 
-		template <class InputIterator> void insert(iterator position, InputIterator first, InputIterator last, typename ft::enable_if< !std::is_integral<InputIterator>::value, InputIterator>::type* = nullptr)
+		template <class InputIterator> void insert(iterator position, InputIterator first, InputIterator last, typename ft::enable_if< !ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr)
 		{
 			//still shit implementation
 			size_type index = position - begin();

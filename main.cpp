@@ -1,9 +1,11 @@
-#include "vector.hpp"
+// #include "vector.hpp"
 #include <iostream>
-#include <cstddef>
-#include <sstream>
-#include "struct_utils.hpp"
+#include <vector>
 
+// #include <cstddef>
+// #include <sstream>
+// #include "struct_utils.hpp"
+#include <algorithm>
 
 // class conv_clas{
 // 	public:
@@ -54,10 +56,21 @@
         "olIewtUEvXJgs1lB9bCn", "dTsPDS0x2uXtcgOIJHb8", "DYvJ2phLppGNZKboTBrd",                    \
         "DjNFMtt9PxkzqvWBHI6j", "1Z3YkeTFlPniKnzFhzgu", "76XqQg6hqMf5IXxKPOEs",                    \
         "gzaapTWW7i9EZjjzLeK6"                                                                     \
-    }; 
+    };
+
 int main()
 {
-	std::cout << "<int> " << ft::is_integral<double>::value << std::endl;
+	char foo[]="Apple";
+  	char bar[]="Apple";
+
+ 	std::cout << std::lexicographical_compare(foo,foo+5,bar,bar+5);
+
+
+
+
+
+
+	// std::cout << "<int> " << ft::is_integral<double>::value << std::endl;
   	// ft::vector<int> myvector;
 	// for (int i=1; i<=10; i++) myvector.push_back(i);
 	// for (ft::vector<int>::iterator r = myvector.begin(); r != myvector.end(); r++)

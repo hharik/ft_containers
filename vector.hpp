@@ -14,8 +14,7 @@ namespace ft
 {
 	//still need to implement is_integral
 
-	template<bool Cond, class T = void> struct enable_if {};
-	template<class T> struct enable_if<true, T> { typedef T type; };
+
 
 	template <class T, class Allocator = std::allocator<T> >
 	class vector
@@ -383,5 +382,6 @@ namespace ft
 		size_type    _capacity;
 		allocator_type	allc;
 	};
-}
+
+
 #endif

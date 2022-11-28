@@ -383,5 +383,5 @@ namespace ft
 		allocator_type	allc;
 	};
 
-
+}
 #endif

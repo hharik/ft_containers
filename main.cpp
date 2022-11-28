@@ -1,11 +1,11 @@
-// #include "vector.hpp"
+#include "vector.hpp"
 #include <iostream>
 #include <vector>
 
 // #include <cstddef>
 // #include <sstream>
 // #include "struct_utils.hpp"
-#include <algorithm>
+// #include <algorithm>
 
 // class conv_clas{
 // 	public:
@@ -58,28 +58,28 @@
         "gzaapTWW7i9EZjjzLeK6"                                                                     \
     };
 
-int main()
-{
-	char foo[]="Apple";
-  	char bar[]="Apple";
+// int main()
 
- 	std::cout << std::lexicographical_compare(foo,foo+5,bar,bar+5);
+// 	// char foo[]="Apple";
+//   	// char bar[]="Apple";
 
-
+//  	// std::cout << std::lexicographical_compare(foo,foo+5,bar,bar+5);
 
 
 
+
+int main(){
 
 	// std::cout << "<int> " << ft::is_integral<double>::value << std::endl;
-  	// ft::vector<int> myvector;
-	// for (int i=1; i<=10; i++) myvector.push_back(i);
-	// for (ft::vector<int>::iterator r = myvector.begin(); r != myvector.end(); r++)
-	// 	std::cout << *r << " ";
-	// std::cout << std::endl;
- 	// myvector.erase (myvector.begin(),myvector.begin()+3);
-	// for (ft::vector<int>::iterator r = myvector.begin(); r != myvector.end(); r++)
-	// 	std::cout << *r << " ";
-
+  	ft::vector<int> myvector;
+	for (int i=1; i<=10; i++) myvector.push_back(i);
+	for (ft::vector<int>::iterator r = myvector.begin(); r != myvector.end(); r++)
+		std::cout << *r << " ";
+	std::cout << std::endl;
+ 	myvector.erase (myvector.begin(),myvector.begin()+3);
+	for (ft::vector<int>::iterator r = myvector.begin(); r != myvector.end(); r++)
+		std::cout << *r << " ";
+}
 //    std::istringstream str("12345"); // push_back //input_iterator_tag
 //     std::istreambuf_iterator<char> it(str), end;
 // 	ft::vector <char> v(it, end);
@@ -419,4 +419,3 @@ int main()
 	// // d.print();
 	// // for (int i = 0; i < d.size(); i++)
 	// 	std::cout << d[i] << std::endl;
-}

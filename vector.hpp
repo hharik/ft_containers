@@ -33,39 +33,12 @@ namespace ft
 		typedef reverse_iterator<const_iterator>     const_reverse_iterator;
 		typedef reverse_iterator<iterator>  reverse_iterator;
 
-		template <class InputIterator> 
-		size_type len( InputIterator first, InputIterator last) const {
-			size_type i = 0;
-			while (first != last){
-				first++; i++;}
-			return i;
-		}
-		template<class iter>
-		void	allocate_for(iter first, iter last, std::forward_iterator_tag)
-		{
-			vector tmp;
-			while (first != last)
-			{
-				tmp.push_back(*first);
-				first++;
-			}
-			reserve(tmp.size());
-			assign(tmp.begin(), tmp.end());
-		}
 
-		template<class iter>
-		void	allocate_for(iter first, iter last, std::input_iterator_tag)
-		{
-			// std::cout << "urmom1 " << std::endl;
-			assign(first, last);
-		}
-		
 		template <class InputIterator>
 		vector(InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type(), typename ft::enable_if< !ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr) 
 		: ptr(nullptr) , _size(0), _capacity(0),  allc(alloc)
 		{
-			typename ft::iterator_traits<InputIterator>::iterator_category test;
-			allocate_for(first, last, test);
+			assign(first, last);
 		}
 
 		explicit vector(const allocator_type& alloc = allocator_type()): ptr(nullptr), _size(0), _capacity(0), allc(alloc) {}
@@ -135,10 +108,10 @@ namespace ft
 		const_reference back() const{return *(ptr + (_size - 1));}
 		//reverse && iterator begin() && end()
 	
+		const_iterator begin() const{return const_iterator(ptr);} 
+		const_iterator end() const { return const_iterator(ptr + _size);}
 		iterator begin() {return iterator(ptr);}
 		iterator end() { return iterator((ptr + _size));}
-		const_iterator begin() const{return const_iterator(ptr);} //still working on const 
-		const_iterator end() const { return const_iterator(ptr + _size);}
 		reverse_iterator rbegin() { return (reverse_iterator(ptr + _size));}
 		reverse_iterator rend(){return reverse_iterator(ptr);}
 		const_reverse_iterator rbegin() const { return reverse_iterator(ptr + _size);}
@@ -146,7 +119,6 @@ namespace ft
 
 		template <class InputIterator> void insert(iterator position, InputIterator first, InputIterator last, typename ft::enable_if< !ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr)
 		{
-			//still shit implementation
 			size_type index = position - begin();
 			vector tmp;
 			tmp.assign(first, last);
@@ -276,14 +248,12 @@ namespace ft
 			}
 
 		}
-		template <class InputIterator> void assign(InputIterator first, InputIterator last)
+
+
+		template <class InputIterator> void assign(InputIterator first, InputIterator last, typename ft::enable_if< !ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr)
 		{
-			clear();
-			while (first != last)
-			{
-				push_back(*first);
-				first++;
-			}
+			typename ft::iterator_traits<InputIterator>::iterator_category test;
+			allocate_for(first, last, test);
 		}
 
 		void assign (size_type n, const value_type& val)
@@ -370,17 +340,64 @@ namespace ft
 		size_type	max_size() const { return allc.max_size();}
 
 		//Relational operators non mumber functions (aka friend func's)
-		friend bool operator== (const vector<T>& lhs, const vector<T>& rhs) { return (lhs.ptr == rhs.ptr);}
-		friend bool operator!= (const vector<T>& lhs, const vector<T>& rhs) {return !(lhs.ptr == rhs.ptr);}
-		friend bool operator<  (const vector<T>& lhs, const vector<T>& rhs) {return (lhs.ptr < rhs.ptr);}
-		friend bool operator<=  (const vector<T>& lhs,const vector<T>& rhs) { return !(lhs.ptr < rhs.ptr);}
-		friend bool operator>  (const vector<T>& lhs, const vector<T>& rhs) { return (lhs.ptr > rhs.ptr);}
-		friend bool operator>= (const vector<T>& lhs, const vector<T>& rhs) { return !(lhs.ptr > rhs.ptr);}
+		friend bool operator== (const vector<T>& lhs, const vector<T>& rhs) {
+			if (lhs.size() != rhs.size())
+				return false;
+			return (ft::equal(rhs.begin(), rhs.end(), lhs.begin()));
+		}
+		friend bool operator!= (const vector<T>& lhs, const vector<T>& rhs) { return !(lhs == rhs);}
+		friend bool operator<  (const vector<T>& lhs, const vector<T>& rhs) {
+			return (ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
+		}
+		friend bool operator<=  (const vector<T>& lhs,const vector<T>& rhs) { 
+			if (ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()) || lhs == rhs)
+				return true;
+			return false;
+		}
+		friend bool operator>  (const vector<T>& lhs, const vector<T>& rhs) { 
+			return (ft::lexicographical_compare(rhs.begin(), rhs.end(), lhs.begin(), lhs.end())); // checking the opposite 
+		}
+		friend bool operator>= (const vector<T>& lhs, const vector<T>& rhs) { 
+			if (lhs > rhs || lhs == rhs)
+				return true;
+			return false;
+		}
+
+
 		private:
 		pointer	ptr;
 		size_type	_size;
 		size_type    _capacity;
 		allocator_type	allc;
+
+
+		template<class iter>
+		void	allocate_for(iter first, iter last, std::forward_iterator_tag)
+		{
+			//forward_iterator_tag
+			vector tmp;
+			while (first != last)
+			{
+				tmp.push_back(*first);
+				first++;
+			}
+			reserve(tmp.size());
+			clear();
+			for (size_type i = 0; i < tmp.size(); i++)
+				push_back(tmp[i]);
+		}
+
+		template<class iter>
+		void	allocate_for(iter first, iter last, std::input_iterator_tag)
+		{
+			//input_iterator_tag
+			clear();
+			while (first != last)
+			{
+				push_back(*first);
+				first++;
+			}
+		}
 	};
 
 }

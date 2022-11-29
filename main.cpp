@@ -3,7 +3,7 @@
 #include <vector>
 
 // #include <cstddef>
-// #include <sstream>
+#include <sstream>
 // #include "struct_utils.hpp"
 // #include <algorithm>
 
@@ -70,17 +70,41 @@
 
 int main(){
 
-	// std::cout << "<int> " << ft::is_integral<double>::value << std::endl;
-  	ft::vector<int> myvector;
-	for (int i=1; i<=10; i++) myvector.push_back(i);
-	for (ft::vector<int>::iterator r = myvector.begin(); r != myvector.end(); r++)
-		std::cout << *r << " ";
-	std::cout << std::endl;
- 	myvector.erase (myvector.begin(),myvector.begin()+3);
-	for (ft::vector<int>::iterator r = myvector.begin(); r != myvector.end(); r++)
-		std::cout << *r << " ";
+	int maq[] = {1, 8, 9, 64, 2, 31, 3};
+	ft::vector<int> b(maq, maq + 4);
+	// ft::vector<int>::iterator t = b.begin();
+	ft::vector<int>::const_reverse_iterator t1 = b.rbegin() ;
+	ft::vector <int>::const_reverse_iterator t2 = b.rbegin() + 1;
+	for (ft::vector <int>::const_reverse_iterator it = b.rbegin(); it != b.rend(); it++) {
+		std::cout << *it << std::endl;
+	}
+	if (t1 < b.rbegin())
+		std::cout << "urmmom1" << std::endl;
+	// ft::vector <long> s3(5, 64);
+	// ft::vector <long> s1;
+	// s1.assign(s3.begin(), s3.end());
+	// std::cout << s1.capacity() << std::endl << std::endl;
+
 }
-//    std::istringstream str("12345"); // push_back //input_iterator_tag
+
+	// std::vector <long> s22(5, 64);
+	// std::vector <long> s11;
+	// s11.assign(s22.begin(), s22.end());
+	// std::cout << s11.capacity() << std::endl;
+	// // if (s1 != s3)
+	// // 	std::cout << "not equal" << std::endl;
+	// // else 
+	// // 	std::cout << "equal" << std::endl;
+	// // // std::cout << "<int> " << ft::is_integral<double>::value << std::endl;
+  	// // ft::vector<int> myvector;
+	// // for (int i=1; i<=10; i++) myvector.push_back(i);
+	// // for (ft::vector<int>::iterator r = myvector.begin(); r != myvector.end(); r++)
+	// // 	std::cout << *r << " ";
+	// // std::cout << std::endl;
+ 	// // myvector.erase (myvector.begin(),myvector.begin()+3);
+	// // for (ft::vector<int>::iterator r = myvector.begin(); r != myvector.end(); r++)
+	// // 	std::cout << *r << " ";
+	//    std::istringstream str("1 2 3 4 5 6 7"); // push_back //input_iterator_tag
 //     std::istreambuf_iterator<char> it(str), end;
 // 	ft::vector <char> v(it, end);
 // 	std::cout << "v1 size and capacity > > " << v.size() << " " << v.capacity() << std::endl;

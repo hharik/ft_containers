@@ -102,7 +102,7 @@ namespace ft
 				reverse_iterator& operator+= (difference_type n) {(current -= n); return *this;}
 				pointer operator ->() const { return &(operator *());}
 				//non-member overloads
-		friend difference_type operator- (const reverse_iterator<Iterator>& lhs, const reverse_iterator<Iterator>& rhs) {return (lhs.base() - rhs.base());}
+		friend difference_type operator- (const reverse_iterator<Iterator>& lhs, const reverse_iterator<Iterator>& rhs) {return (rhs.base() - lhs.base());}
 		friend reverse_iterator<Iterator> operator+ (difference_type n, const reverse_iterator<Iterator>& rev_it) { return reverse_iterator(rev_it + n);}
 	
 		friend bool operator== (const reverse_iterator<Iterator>& lhs, const reverse_iterator<Iterator>& rhs) { return (lhs.base() == rhs.base());}

@@ -69,17 +69,17 @@
 
 
 int main(){
-
 	int maq[] = {1, 8, 9, 64, 2, 31, 3};
-	ft::vector<int> b(maq, maq + 4);
-	// ft::vector<int>::iterator t = b.begin();
-	ft::vector<int>::const_reverse_iterator t1 = b.rbegin() ;
-	ft::vector <int>::const_reverse_iterator t2 = b.rbegin() + 1;
-	for (ft::vector <int>::const_reverse_iterator it = b.rbegin(); it != b.rend(); it++) {
-		std::cout << *it << std::endl;
-	}
-	if (t1 < b.rbegin())
-		std::cout << "urmmom1" << std::endl;
+	ft::vector<int> v(maq, maq + 4);
+	ft::vector<int>::iterator t = v.begin();
+	std::cout << (v.rend() - v.rbegin())  << std::endl;
+	// ft::vector<int>::const_reverse_iterator t1 = b.rbegin() ;
+	// ft::vector <int>::const_reverse_iterator t2 = b.rbegin() + 1;
+	// for (ft::vector <int>::const_reverse_iterator it = b.rbegin(); it != b.rend(); it++) {
+	// 	std::cout << *it << std::endl;
+	// }
+	// if (t1 < b.rbegin())
+	// 	std::cout << "urmmom1" << std::endl;
 	// ft::vector <long> s3(5, 64);
 	// ft::vector <long> s1;
 	// s1.assign(s3.begin(), s3.end());

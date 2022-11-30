@@ -73,22 +73,23 @@
 int main(){
 
 	ft::vector <int> v(3, 8);
+	ft::vector <int> v1(3, 8);
 	ft::vector<int>::iterator it = v.end() - 1;
-	std::cout << *it << std::endl;
-	ft::vector <int> v1(10, 10);
-	std::cout << "v size and capacity > > " << v.size() << " " << v.capacity() << std::endl;
-	std::cout << "v1 size and capacity > > " << v1.size() << " " << v1.capacity() << std::endl << std::endl;
-	ft::swap(v, v1);
-	std::cout << "v size and capacity > > " << v.size() << " " << v.capacity() << std::endl << std::endl;
-	std::cout << "v1 size and capacity > > " << v1.size() << " " << v1.capacity() << std::endl;
-	for (ft::vector <int>::iterator it = v1.begin(); it != v1.end(); it++) {
-		std::cout << *it << std::endl;
-	}
-	std::cout << std::endl;
-	for (ft::vector <int>::iterator it = v1.begin(); it != v1.end(); it++) {
-		std::cout << *it << std::endl;
-	}
-
+	if (v != v1) std::cout << "urmom1" << std::endl;
+	// std::cout << *it << std::endl;
+	// ft::vector <int> v1(10, 10);
+	// std::cout << "v size and capacity > > " << v.size() << " " << v.capacity() << std::endl;
+	// std::cout << "v1 size and capacity > > " << v1.size() << " " << v1.capacity() << std::endl << std::endl;
+	// ft::swap(v, v1);
+	// std::cout << "v size and capacity > > " << v.size() << " " << v.capacity() << std::endl << std::endl;
+	// std::cout << "v1 size and capacity > > " << v1.size() << " " << v1.capacity() << std::endl;
+	// for (ft::vector <int>::iterator it = v1.begin(); it != v1.end(); it++) {
+	// 	std::cout << *it << std::endl;
+	// }
+	// std::cout << std::endl;
+	// for (ft::vector <int>::iterator it = v1.begin(); it != v1.end(); it++) {
+	// 	std::cout << *it << std::endl;
+	// }
 	// ft::vector <std::string> v1(s_string, s_string + s_size);
 	// ft::vector <std::string> v2(b_string, b_string + s_size);
 	// v1.swap(v2);

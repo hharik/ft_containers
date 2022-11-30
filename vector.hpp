@@ -341,24 +341,49 @@ namespace ft
 		size_type	max_size() const { return allc.max_size();}
 
 		//Relational operators non mumber functions (aka friend func's)
-		friend bool operator== (const vector<T>& lhs, const vector<T>& rhs) {
+		// template<class Iter1, class Iter2> friend bool operator== (const Iter1& lhs, const Iter2& rhs) {
+		// 	if (lhs.size() != rhs.size())
+		// 		return false;
+		// 	return (ft::equal(rhs.begin(), rhs.end(), lhs.begin()));	
+		// }
+		// 	template<class Iter1, class Iter2>  friend bool operator!= (const Iter1& lhs, const Iter2& rhs) { return !(lhs == rhs);}
+		// 	template<class Iter1, class Iter2>  friend bool operator<  (const Iter1& lhs, const Iter2& rhs) {
+		// 	return (ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
+		// }
+		// 	template<class Iter1, class Iter2>  friend bool operator<=  (const Iter1& lhs,const  Iter2& rhs) { 
+		// 	if (ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()) || lhs == rhs)
+		// 		return true;
+		// 	return false;
+		// }
+		// 	template<class Iter1, class Iter2>  friend bool operator>  (const Iter1& lhs, const Iter2& rhs) { 
+		// 	return (ft::lexicographical_compare(rhs.begin(), rhs.end(), lhs.begin(), lhs.end())); // checking the opposite 
+		// }
+		// 	template<class Iter1, class Iter2>  friend bool operator>= (const Iter1& lhs, const Iter2& rhs) { 
+		// 	if (lhs > rhs || lhs == rhs)
+		// 		return true;
+		// 	return false;
+		// }
+
+
+
+		template <class t, class alloc> friend bool operator== (const vector<t,alloc>& lhs, const vector<t,alloc>& rhs) {
 			if (lhs.size() != rhs.size())
 				return false;
 			return (ft::equal(rhs.begin(), rhs.end(), lhs.begin()));
 		}
-		friend bool operator!= (const vector<T>& lhs, const vector<T>& rhs) { return !(lhs == rhs);}
-		friend bool operator<  (const vector<T>& lhs, const vector<T>& rhs) {
+		template <class t, class alloc> friend bool operator!= (const vector<t,alloc>& lhs, const vector<t,alloc>& rhs) { return !(lhs == rhs);}
+		template <class t, class alloc> friend bool operator< (const vector<t,alloc>& lhs, const vector<t,alloc>& rhs) {
 			return (ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
 		}
-		friend bool operator<=  (const vector<T>& lhs,const vector<T>& rhs) { 
+		template <class t, class alloc> friend bool operator<= (const vector<t,alloc>& lhs, const vector<t,alloc>& rhs) { 
 			if (ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()) || lhs == rhs)
 				return true;
 			return false;
 		}
-		friend bool operator>  (const vector<T>& lhs, const vector<T>& rhs) { 
+		template <class t, class alloc> friend bool operator> (const vector<t,alloc>& lhs, const vector<t,alloc>& rhs) { 
 			return (ft::lexicographical_compare(rhs.begin(), rhs.end(), lhs.begin(), lhs.end())); // checking the opposite 
 		}
-		friend bool operator>= (const vector<T>& lhs, const vector<T>& rhs) { 
+		template <class t, class alloc> friend bool operator>= (const vector<t,alloc>& lhs, const vector<t,alloc>& rhs) { 
 			if (lhs > rhs || lhs == rhs)
 				return true;
 			return false;

@@ -72,10 +72,16 @@
 
 int main(){
 
-	ft::vector <int> v(3, 8);
-	ft::vector <int> v1(3, 8);
-	ft::vector<int>::iterator it = v.end() - 1;
-	if (v != v1) std::cout << "urmom1" << std::endl;
+	ft::vector<std::string> v1;
+	ft::vector<std::string> v;
+	v.insert(v.end(), b_string, b_string + 8);
+	v1 = v;
+	if (v1 <= v)
+		std::cout << "urmom 1" << std::endl;
+	// ft::vector <int> v(3, 8);
+	// ft::vector <int> v1(3, 8);
+	// ft::vector<int>::iterator it = v.end() - 1;
+	// if (v != v1) std::cout << "urmom1" << std::endl;
 	// std::cout << *it << std::endl;
 	// ft::vector <int> v1(10, 10);
 	// std::cout << "v size and capacity > > " << v.size() << " " << v.capacity() << std::endl;

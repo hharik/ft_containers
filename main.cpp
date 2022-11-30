@@ -20,6 +20,8 @@
 	// conv_clas cv = 9;
 	// b = cv;
 	// std::cout<<"b after"<<b<<std::endl;
+	    std::size_t s_size = 32;                                                                       \
+    std::size_t b_size = 64; 
  std::string s_string[32] = {                                                                   \
         "QExoqp0nICr0sXsHqty2", "naax9QcpJhvaL7DezsNQ", "25ZTtB6wbptfbxM8AvHB",                    \
         "tShYNtc0MkdjqLrOatgz", "7Z3kf1Qec0NnsLSEpbOt", "WhkSNrKJC966fvjZ2Or1",                    \
@@ -69,14 +71,39 @@
 
 
 int main(){
-	int maq[] = {1, 8, 9, 64, 2, 31, 3};
-	ft::vector<int> v(maq, maq + 4);
-	ft::vector<int>::iterator t = v.begin();
-	std::cout << (v.rend() - v.rbegin())  << std::endl;
+
+	ft::vector <int> v(3, 8);
+	ft::vector<int>::iterator it = v.end() - 1;
+	std::cout << *it << std::endl;
+	ft::vector <int> v1(10, 10);
+	std::cout << "v size and capacity > > " << v.size() << " " << v.capacity() << std::endl;
+	std::cout << "v1 size and capacity > > " << v1.size() << " " << v1.capacity() << std::endl << std::endl;
+	ft::swap(v, v1);
+	std::cout << "v size and capacity > > " << v.size() << " " << v.capacity() << std::endl << std::endl;
+	std::cout << "v1 size and capacity > > " << v1.size() << " " << v1.capacity() << std::endl;
+	for (ft::vector <int>::iterator it = v1.begin(); it != v1.end(); it++) {
+		std::cout << *it << std::endl;
+	}
+	std::cout << std::endl;
+	for (ft::vector <int>::iterator it = v1.begin(); it != v1.end(); it++) {
+		std::cout << *it << std::endl;
+	}
+
+	// ft::vector <std::string> v1(s_string, s_string + s_size);
+	// ft::vector <std::string> v2(b_string, b_string + s_size);
+	// v1.swap(v2);
+	// std::cout << "v1 size and capacity > > " << v1.size() << " " << v1.capacity() << std::endl;
+	// std::cout << "v2 size and capacity > > " << v2.size() << " " << v2.capacity() << std::endl;
+
+	// std::swap(v1, v2);
+	// std::cout << "v2 size and capacity > > " << v1.size() << " " << v1.capacity() << std::endl;
+	// std::cout << "v2 size and capacity > > " << v2.size() << " " << v2.capacity() << std::endl;
+	// int maq[] = {1, 8, 9, 64, 2, 31, 3};
+	// ft::vector<int> v(maq, maq + 4);
+	// ft::vector<int>::iterator t = v.begin();
+	// std::cout << (v.rend() - v.rbegin())  << std::endl;
 	// ft::vector<int>::const_reverse_iterator t1 = b.rbegin() ;
 	// ft::vector <int>::const_reverse_iterator t2 = b.rbegin() + 1;
-	// for (ft::vector <int>::const_reverse_iterator it = b.rbegin(); it != b.rend(); it++) {
-	// 	std::cout << *it << std::endl;
 	// }
 	// if (t1 < b.rbegin())
 	// 	std::cout << "urmmom1" << std::endl;
@@ -107,7 +134,6 @@ int main(){
 	//    std::istringstream str("1 2 3 4 5 6 7"); // push_back //input_iterator_tag
 //     std::istreambuf_iterator<char> it(str), end;
 // 	ft::vector <char> v(it, end);
-// 	std::cout << "v1 size and capacity > > " << v.size() << " " << v.capacity() << std::endl;
 // 	for (ft::vector<char>::iterator r = v.begin(); r != v.end(); r++)
 // 		std::cout << *r;
 // 	std::cout << " ************** " << std::endl;

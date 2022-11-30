@@ -15,7 +15,6 @@ namespace ft
 	//still need to implement is_integral
 
 
-
 	template <class T, class Allocator = std::allocator<T> >
 	class vector
 	{
@@ -289,10 +288,12 @@ namespace ft
 
 		void swap(vector &v)
 		{
-			vector tmp = v;
-			v = *this;
-			*this = tmp;
+			swapU(this->ptr, v.ptr);
+			swapU(this->_size, v._size);
+			swapU(this->_capacity, v._capacity);
+			swapU(this->allc, v.allc);
 		}
+
 		void pop_back()
 		{
 			if (_size > 0)
@@ -364,13 +365,19 @@ namespace ft
 		}
 
 
+
 		private:
 		pointer	ptr;
 		size_type	_size;
 		size_type    _capacity;
 		allocator_type	allc;
 
-
+		template <typename U>void	swapU(U &o_ptr, U &other)
+		{
+			U tmp = o_ptr;
+			o_ptr = other;
+			other = tmp;
+		}
 		template<class iter>
 		void	allocate_for(iter first, iter last, std::forward_iterator_tag)
 		{
@@ -399,6 +406,9 @@ namespace ft
 			}
 		}
 	};
-
+	template <class T, class Alloc> void swap(vector<T,Alloc>& x, vector<T,Alloc>& y) {x.swap(y);}
 }
+
+
+
 #endif

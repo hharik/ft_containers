@@ -1,5 +1,6 @@
 #include <type_traits>
 #include <iostream>
+#include <utility>
 #include <vector>
 template<typename T>
 void foo(T)
@@ -13,13 +14,20 @@ void foo(T)
 // {
 // 	std::cout << "is unsinged" << std::endl;
 // }
+class test {
+	protected: 
+		test(std::string name): name(name) {std::cout << "Name " <<  name << std::endl;} 
+		std::string name;
+};
 
-class Hamid{
+class Hamid : public test {
 	int x;
 	int y;
-	char *name;
+
+	// std::ostrea÷m obje;
 public:
-	Hamid():x(10), y(10)
+	//std::ostream(){}
+	Hamid():x(10), y(10), test("urmom!")
 	{
 		std::cout << "hamid" << std::endl;
 	}
@@ -27,7 +35,7 @@ public:
 	{
 		std::cout << "x : " << x << std::endl;
 		std::cout << "y : " << y << std::endl;
-		std::cout << "name : " << name << std::endl;
+		// std::cout << "name : " << name << std::endl;
 	}
 // 	Hamid operator=(const Hamid& other)
 // 	{
@@ -35,6 +43,7 @@ public:
 // 	}
 };
 
+std::pair<std::string, std::string>
 
 int main()
 {

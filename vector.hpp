@@ -339,7 +339,7 @@ namespace ft
 		size_type capacity() const { return _capacity; }
 		size_type	size() const { return _size;}
 		size_type	max_size() const { 
-			if (sizeof(T) == sizeof(char))
+			if (PTRDIFF_MAX < allc.max_size())
 				return PTRDIFF_MAX;
 			return allc.max_size();
 			}

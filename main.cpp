@@ -7,13 +7,13 @@
 // #include "struct_utils.hpp"
 // #include <algorithm>
 
-// class conv_clas{
-// 	public:
-// 	int nb;
-// 		conv_clas(){}
-// 		conv_clas(int a):nb(a) {}
-// 		operator int (){return nb;}
-// };
+class conv_clas{
+	public:
+	int nb;
+		conv_clas(){}
+		conv_clas(int a):nb(a) {}
+		operator int (){return nb;}
+};
 
 	// int b = 0;
 	// std::cout<<"b before"<<b<<std::endl;
@@ -72,12 +72,15 @@
 
 int main(){
 
-	auto v = std::vector<char>();
-	std::cout << " MAx Char "<< v.max_size() << std::endl;
-	std::cout << "Max size_t " << SIZE_MAX  << std::endl;
-	std::cout << "Max val ptrdiff_t  " << PTRDIFF_MAX << std::endl;
+	// std::cout << "Max size_t " << SIZE_MAX  << std::endl;
+	// std::cout << "Max val ptrdiff_t  " << PTRDIFF_MAX << std::endl;
 	// ft::vector<std::string> v1;
 	// ft::vector<std::string> v;
+	// std::cout << "theresss " << std::endl;
+	// auto v = std::vector<char>();
+	// std::cout << " MAx Char "<< v.max_size() << std::endl;
+	// std::cout << "Max size_t " << SIZE_MAX  << std::endl;
+	// std::cout << "Max val ptrdiff_t  " << PTRDIFF_MAX << std::endl;
 	// v.insert(v.end(), b_string, b_string + 8);
 	// v1 = v;
 	// if (v1 <= v)

@@ -338,33 +338,11 @@ namespace ft
 		}
 		size_type capacity() const { return _capacity; }
 		size_type	size() const { return _size;}
-		size_type	max_size() const { return allc.max_size();}
-
-		//Relational operators non mumber functions (aka friend func's)
-		// template<class Iter1, class Iter2> friend bool operator== (const Iter1& lhs, const Iter2& rhs) {
-		// 	if (lhs.size() != rhs.size())
-		// 		return false;
-		// 	return (ft::equal(rhs.begin(), rhs.end(), lhs.begin()));	
-		// }
-		// 	template<class Iter1, class Iter2>  friend bool operator!= (const Iter1& lhs, const Iter2& rhs) { return !(lhs == rhs);}
-		// 	template<class Iter1, class Iter2>  friend bool operator<  (const Iter1& lhs, const Iter2& rhs) {
-		// 	return (ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
-		// }
-		// 	template<class Iter1, class Iter2>  friend bool operator<=  (const Iter1& lhs,const  Iter2& rhs) { 
-		// 	if (ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()) || lhs == rhs)
-		// 		return true;
-		// 	return false;
-		// }
-		// 	template<class Iter1, class Iter2>  friend bool operator>  (const Iter1& lhs, const Iter2& rhs) { 
-		// 	return (ft::lexicographical_compare(rhs.begin(), rhs.end(), lhs.begin(), lhs.end())); // checking the opposite 
-		// }
-		// 	template<class Iter1, class Iter2>  friend bool operator>= (const Iter1& lhs, const Iter2& rhs) { 
-		// 	if (lhs > rhs || lhs == rhs)
-		// 		return true;
-		// 	return false;
-		// }
-
-
+		size_type	max_size() const { 
+			if (sizeof(T) == sizeof(char))
+				return PTRDIFF_MAX;
+			return allc.max_size();
+			}
 
 		template <class t, class alloc> friend bool operator== (const vector<t,alloc>& lhs, const vector<t,alloc>& rhs) {
 			if (lhs.size() != rhs.size())

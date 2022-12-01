@@ -72,12 +72,16 @@
 
 int main(){
 
-	ft::vector<std::string> v1;
-	ft::vector<std::string> v;
-	v.insert(v.end(), b_string, b_string + 8);
-	v1 = v;
-	if (v1 <= v)
-		std::cout << "urmom 1" << std::endl;
+	auto v = std::vector<char>();
+	std::cout << " MAx Char "<< v.max_size() << std::endl;
+	std::cout << "Max size_t " << SIZE_MAX  << std::endl;
+	std::cout << "Max val ptrdiff_t  " << PTRDIFF_MAX << std::endl;
+	// ft::vector<std::string> v1;
+	// ft::vector<std::string> v;
+	// v.insert(v.end(), b_string, b_string + 8);
+	// v1 = v;
+	// if (v1 <= v)
+	// 	std::cout << "urmom 1" << std::endl;
 	// ft::vector <int> v(3, 8);
 	// ft::vector <int> v1(3, 8);
 	// ft::vector<int>::iterator it = v.end() - 1;

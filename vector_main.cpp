@@ -1,6 +1,7 @@
 #include "vector.hpp"
-#include "map.hpp"
-#include "stack.hpp"
+// #include "map.hpp"
+// #include "stack.hpp"
+
 
 #include <fstream>      // std::ofstream
 

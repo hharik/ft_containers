@@ -17,7 +17,6 @@ namespace ft{
 		bidirectional_iterator() : _curr(), _end() {}
 		bidirectional_iterator(node_type node_beg, node_type node_end) : _curr(node_beg), _end(node_end){ } 
 		bidirectional_iterator(const bidirectional_iterator &oth) { 
-			
 			*this = oth;
 		}
 		template <typename P, typename R>	bidirectional_iterator(const bidirectional_iterator<P, R> &ot) {

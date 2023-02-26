@@ -44,14 +44,6 @@ class AVL {
 
 		AVL() : root(NULL), size_(0), alloc_node(), alloc_pair_(), compare_(){}
 		AVL(const AVL &other) : root(other.root), size_(other.size_), alloc_node(other.alloc_node), alloc_pair_(other.alloc_pair_), compare_(other.compare_) {}
-		// AVL(const AVL &other)  { this = other; }
-		// AVL &operator = (const AVL &oth){ 
-		// 	root  = oth.root;
-		// 	alloc_node = oth.alloc_node;
-		// 	alloc_pair_ = oth.alloc_pair_;
-		// 	size_ = oth.size_;
-		// 	return *this;
-		// }
 		~AVL() {if (size_) destory_avl(); }
 
 
@@ -63,20 +55,20 @@ class AVL {
 			return tmp;
 		}
 
-		void	print2D(_node_type *r, int space){
-			if (r == NULL) return;
-			space += SPACE; // increase distance between levels of the tree 
-			print2D(r->right, space);
-			std::cout << std::endl;
-			for (int i = SPACE; i < space; i++)
-				std::cout << " ";
-			std::cout << r->data->first << " " <<std::endl;
-			print2D(r->left, space);
-		}
+		// void	print2D(_node_type *r, int space){
+		// 	if (r == NULL) return;
+		// 	space += SPACE; // increase distance between levels of the tree 
+		// 	print2D(r->right, space);
+		// 	std::cout << std::endl;
+		// 	for (int i = SPACE; i < space; i++)
+		// 		std::cout << " ";
+		// 	std::cout << r->data->first << " " <<std::endl;
+		// 	print2D(r->left, space);
+		// }
 
-		void print(){
-			print2D(root, 10);
-		}
+		// void print(){
+		// 	print2D(root, 10);
+		// }
 
 		int Height(pointer r)
 		{
@@ -166,20 +158,13 @@ class AVL {
 		void 	destory_avl()
 		{
 			if (size_ )
-			{
 				destroy_avl_base(root);
-				// while (root != NULL)
-				// {
-				// 	Delete_avl(root, root->data->first);
-				// }
-			}
 		}
 		int     max(int a, int b)
         {
-			 return (a > b) ? a : b;
-			// if (a < b)
-			// 	return b;
-			// return a;
+			if (a > b)
+				return a;
+			return b;
         }
 		pointer		rightRotate(pointer _node)
 		{
@@ -210,9 +195,10 @@ class AVL {
 
 			if (t1 != NULL)
 				t1->parent = _node;
+	
 			x->left = _node;
 			_node->right = t1;
-
+			//
 			x->parent = _p_node;
 			_node->parent = x;
 
@@ -220,6 +206,7 @@ class AVL {
             x->height = max(Height(x->left), Height(x->right)) + 1;
 			return x;
 		}
+
 		pointer nMin(pointer r)
 		{
 			if (r->left == NULL)
@@ -385,6 +372,7 @@ class AVL {
 			}
 			return r;
 		}
+		
 		pointer lower_bound(const key_type val) const { 
 			pointer tmp = root;
 			pointer r = NULL;

@@ -1,7 +1,6 @@
 
 #ifndef vector_HPP
 # define vector_HPP
-
 #include <type_traits>
 #include <iostream>
 #include <iterator>
@@ -80,8 +79,6 @@ namespace ft
 					for (size_type i = 0; i < _size; i++)
 						allc.construct(tmp + i, *(ptr + i));
 				}
-				// for (size_type i = 0; i < _size; i++)
-				// 	allc.destroy(ptr + i);
 				clear();
 				if (ptr && _capacity)
 					allc.deallocate(ptr, _capacity);
@@ -116,6 +113,7 @@ namespace ft
 		reverse_iterator rend(){return reverse_iterator(ptr);}
 		const_reverse_iterator rbegin() const { return reverse_iterator(ptr + _size);}
 		const_reverse_iterator rend() const{return reverse_iterator(ptr);}
+	
 		// SFINAE Substitution Failure is not an Error
 		template <class InputIterator> void insert(iterator position, InputIterator first, InputIterator last, typename ft::enable_if< !ft::is_integral<InputIterator>::value, InputIterator>::type* = NULL)
 		{
@@ -134,7 +132,7 @@ namespace ft
 					reserve(_size + tmp.size());
 			}
 			for (size_type i = _size; i > index; i--)
-			{			
+			{
 				allc.construct((ptr + i - 1 + n), *(ptr + i - 1));
 				allc.destroy(ptr + i - 1);
 			}
@@ -180,24 +178,6 @@ namespace ft
 		}
 		iterator insert (iterator position, const value_type& val)
 		{
-		//    difference_type pos  = position -  begin();
-                
-        //         if(_capacity == _size)
-        //         {
-        //             if(!_capacity)
-        //                 reserve(1);
-        //             else 
-        //                 reserve(_capacity * 2);
-        //         }
-
-        //         for(difference_type i = _size; i > pos; i--)
-        //         {
-        //             allc.construct(ptr + i, *(ptr + (i - 1)));
-        //             allc.destroy(ptr + (i - 1));
-        //         }
-        //         allc.construct(ptr + pos, val);
-        //         _size++;
-        //         return(ptr + pos);	 
 			size_type index = position  - begin();
 			// if (position > _size)
 			// 	return ;
@@ -431,23 +411,5 @@ namespace ft
 	template <class T, class Alloc> void swap(vector<T,Alloc>& x, vector<T,Alloc>& y) {x.swap(y);}
 }
 
-   // difference_type pos  = position -  begin();
-                
-                // if(_capacity == _size)
-                // {
-                //     if(!_capacity)
-                //         reserve(1);
-                //     else 
-                //         reserve(_capacity * 2);
-                // }
-
-                // for(difference_type i = _size; i > pos; i--)
-                // {
-                //     allc.construct(ptr + i, *(ptr + (i - 1)));
-                //     allc.destroy(ptr + (i - 1));
-                // }
-                // allc.construct(ptr + pos, val);
-                // _size++;
-                // return(ptr + pos);
 
 #endif

@@ -64,6 +64,20 @@ class map
 			insert(x.begin(), x.end());
 		return *this;
 	}
+	mapped_type& at (const key_type& k) {
+		tree_pointer tmp = tree_.search(k);
+		if (tmp == NULL)
+			throw std::out_of_range("map");
+		return tmp->data->second;
+	}
+	const mapped_type& at (const key_type& k) const
+	{
+		const tree_pointer tmp = tree_.search(k);
+		if (tmp == NULL)
+			throw std::out_of_range("map");
+		return tmp->data->second;
+	}
+
 
 	//begin && end iterators 
 	iterator begin(){
@@ -120,7 +134,7 @@ class map
 	mapped_type& operator[] (const key_type& k){
 		return (*((this->insert(ft::make_pair(k,mapped_type()))).first)).second;
 	}
-	void	print() { tree_.print();}
+	// void	print() { tree_.print();}
 
 	void clear() {
 		tree_.destory_avl();
